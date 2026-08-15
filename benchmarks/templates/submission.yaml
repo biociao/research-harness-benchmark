@@ -1,0 +1,37 @@
+# Copy this file for a new system submission
+system:
+  name: ""
+  type: agent | llm | skill | harness
+  version: ""
+  provider: ""
+  date: ""
+
+benchmark:
+  id: ""
+  version: ""
+
+execution:
+  environment: ""
+  hardware: ""
+  runtime_seconds: null
+  human_interventions: 0
+  token_usage: null
+  compute_cost_usd: null
+
+scores:
+  D1: null
+  D2: null
+  D3: null
+  D4: null
+  D5: null
+
+evidence:
+  reproducibility_level: R0 | R1 | R2 | R3 | R4
+  evidence_level: E0 | E1 | E2 | E3 | E4
+  artifacts: []
+
+review:
+  strengths: []
+  weaknesses: []
+  reviewer: ""
+  confidence: high | medium | low

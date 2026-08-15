@@ -1,0 +1,19 @@
+benchmark: Love2014-DESeq2-v1
+title: Love et al. 2014 DESeq2 computational reproduction (airway)
+claims:
+  - claim_id: C01
+    statement: "DESeq2 在论文指定的模拟方案下（80% null / 20% DE、FC∈{2,3,4}、m∈{6,8,10,20}）比 DESeq1/edgeR 灵敏度更高且 FDR 受控"
+    category: statistical_method
+    expected: simulation_spec_fully_documented
+  - claim_id: C02
+    statement: "Dex 处理人气道平滑肌细胞导致显著差异表达基因集，其中 CRISPLD2 显著上调（qPCR/WB 验证）"
+    category: differential_expression
+    expected: direction_and_significance_required
+  - claim_id: C03
+    statement: "已知糖皮质激素响应基因 DUSP1/KLF15/PER1/TSC22D3 出现在显著 DE 列表中"
+    category: known_targets
+    expected: membership_in_de_list
+  - claim_id: C04
+    statement: "标准 airway 8 样本分析（FDR<0.1）可复现约 1,069 个 DE 基因（vignette 基准）"
+    category: reproducibility_benchmark
+    expected: tolerance_band_scoring

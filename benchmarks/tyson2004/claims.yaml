@@ -1,0 +1,16 @@
+benchmark: Tyson2004-v1
+title: Tyson et al. 2004 computational reproduction
+claims:
+  - claim_id: C01
+    statement: "低多样性群落可以解析为五个主要 genome bins"
+    category: community_structure
+  - claim_id: C02
+    statement: "scaffold composition / GC / 16S 可以支持主要 bin 的归属"
+    category: bin_validation
+  - claim_id: C03
+    statement: "关键碳/氮固定与能量代谢结论可以从基因组证据重新验证"
+    category: metabolism
+  - claim_id: C04
+    statement: "SNP/重组等依赖原始 reads 的结论可以被独立重新计算"
+    category: strain_variation
+    expected: data_availability_must_be_verified

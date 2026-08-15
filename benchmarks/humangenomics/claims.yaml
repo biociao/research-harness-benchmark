@@ -1,0 +1,23 @@
+benchmark: 1000Genomes-Phase3-v1
+title: Auton et al. 2015 1000 Genomes Phase 3 computational reproduction (chr21)
+claims:
+  - claim_id: C01
+    statement: "数据集包含 2,504 个个体、26 个人群、5 个超级人群（AFR/AMR/EAS/EUR/SAS）"
+    category: sample_structure
+    expected: exact_count_match
+  - claim_id: C02
+    statement: "逐染色体变异计数（SNP/indel/singleton AC=1）与论文 Supplementary Table 1 一致"
+    category: variant_counts
+    expected: tolerance_band (+/-1)
+  - claim_id: C03
+    statement: "每基因组变异负担与 singleton 数（SNP 3.53-4.31M、singleton 11.4k-14.8k）可换算验证"
+    category: variant_burden
+    expected: proportional_consistency
+  - claim_id: C04
+    statement: "PCA 可将 26 个人群分离为 5 个超级人群聚类（论文 Fig 2）"
+    category: population_structure
+    expected: ari_ge_0.9
+  - claim_id: C05
+    statement: "超级人群两两 Fst 与论文发布值一致（论文 Fig 3）"
+    category: population_differentiation
+    expected: tolerance_band

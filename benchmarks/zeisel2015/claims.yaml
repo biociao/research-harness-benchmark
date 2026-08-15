@@ -1,0 +1,15 @@
+benchmark: Zeisel2015-SingleCell-v1
+title: Zeisel et al. 2015 single-cell RNA-seq computational reproduction
+claims:
+  - claim_id: C01
+    statement: "3005 个小鼠皮层/海马单细胞可聚类为约 9 个 level-1 大类 / 47 个 level-2 分子亚类"
+    category: cell_typing
+    expected: level1_primary_level2_bonus
+  - claim_id: C02
+    statement: "特定 marker 基因可识别特定细胞类型（Pax6+ layer I 中间神经元、Itpr2+ 少突胶质亚类等）"
+    category: marker_validation
+    expected: auroc_or_de_direction
+  - claim_id: C03
+    statement: "CA1（海马）与 S1（体感皮层）锥体神经元可分层"
+    category: regional_difference
+    expected: cluster_separation
