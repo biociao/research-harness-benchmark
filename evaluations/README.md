@@ -5,7 +5,7 @@
 | Round | Benchmark | 参与系统 | 结果 | 状态 |
 |---|---|---|---|---|
 | [R01](round-01-tyson2004-v1.md) | Tyson2004-v1 | DSH 科研代理 / Claude Science | 9.10 / 8.00 | ✅ 完成 |
-| [R02](round-02-two-project-combined.md) | 双项目综合（Tyson2004-v1 + Auton2015） | D·DSH×GLM-5.3 / C·DSH×GLM-5.2 / A·DSH×DeepSeek-V1-Flash / B·Claude Science×DeepSeek-V1-Flash | 93.3† / 91.8 / 90.8 / 85.8 | ✅ 完成（D 为暂定第一，02 待实测） |
+| [R02](round-02-two-project-combined.md) | 双项目综合（Tyson2004-v1 + Auton2015） | D·dsh-science×GLM-5.3 / C·dsh-science×GLM-5.2 / A·dsh-science×DeepSeek-V1-Flash / B·Claude Science×DeepSeek-V1-Flash | 93.3† / 91.8 / 90.8 / 85.8 | ✅ 完成（D 为暂定第一，02 待实测） |
 | R03（规划） | 待定（建议扩大项目样本 / 增加重复） | 待定 | — | ⏳ 待评测 |
 
 ## 规则

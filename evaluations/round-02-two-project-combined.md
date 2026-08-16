@@ -15,9 +15,9 @@
 
 | Rank | Harness | LLM | 01 项目分 | 02 项目分 | 综合总分 | Status |
 |---:|---|---|---:|---:|---:|---|
-| 🥇 1 | D · DSH | GLM-5.3 | 93.3 | 93.3† | **93.3†** | 暂列综合 Rank #1（02 未出，暂按 01 计） |
-| 🥈 2 | C · DSH | GLM-5.2 | 91.0 | 92.5 | **91.8** | 综合 Rank #2 |
-| 🥉 3 | A · DSH | DeepSeek-V1-Flash | 90.6 | 91.0 | **90.8** | 综合 Rank #3 |
+| 🥇 1 | D · dsh-science | GLM-5.3 | 93.3 | 93.3† | **93.3†** | 暂列综合 Rank #1（02 未出，暂按 01 计） |
+| 🥈 2 | C · dsh-science | GLM-5.2 | 91.0 | 92.5 | **91.8** | 综合 Rank #2 |
+| 🥉 3 | A · dsh-science | DeepSeek-V1-Flash | 90.6 | 91.0 | **90.8** | 综合 Rank #3 |
 | 4 | B · Claude Science | DeepSeek-V1-Flash | 84.4 | 87.1 | **85.8** | 综合 Rank #4 |
 
 **†** D 的 02（Auton 2015）结果尚未产出，暂按 01 分数（93.3）计入；综合总分 93.3 为**暂定值**，待 02 实测后更新，届时排名可能变动。
@@ -28,25 +28,25 @@
 
 | Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| C · DSH | GLM-5.2 | 89 | 92 | **94** | 92 | 84 | **91.0** |
-| A · DSH | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
+| C · dsh-science | GLM-5.2 | 89 | 92 | **94** | 92 | 84 | **91.0** |
+| A · dsh-science | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
 | B · Claude Science | DeepSeek-V1-Flash | 84 | 86 | 85 | 84 | 80 | **84.4** |
-| D · DSH | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
+| D · dsh-science | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
 
 ### 02｜Auton 2015（1000 Genomes Phase 3）
 
 | Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| C · DSH | GLM-5.2 | 90 | **94** | **95** | **94** | 86 | **92.5** |
-| A · DSH | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
+| C · dsh-science | GLM-5.2 | 90 | **94** | **95** | **94** | 86 | **92.5** |
+| A · dsh-science | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
 | B · Claude Science | DeepSeek-V1-Flash | 85 | 88 | 88 | 87 | 82 | **87.1** |
-| D · DSH | GLM-5.3 | — | — | — | — | — | **93.3†** |
+| D · dsh-science | GLM-5.3 | — | — | — | — | — | **93.3†** |
 
 **†** D 的 02 结果尚未产出，暂按 01 分数（93.3）计入，待实测后更新。
 
 ## 关键结论
 
-- **Harness Effect ≈ +5 分**：A 与 B 使用同一 LLM（DeepSeek-V1-Flash），DSH（90.8）比 Claude Science（85.8）高 5.0 分——benchmark 测到的是 Harness 结构差异，而非单纯 LLM 差异。
+- **Harness Effect ≈ +5 分**：A 与 B 使用同一 LLM（DeepSeek-V1-Flash），dsh-science（90.8）比 Claude Science（85.8）高 5.0 分——benchmark 测到的是 Harness 结构差异，而非单纯 LLM 差异。
 - **同一 Harness 换更强模型只提升 1.0 分**：A → C（DeepSeek-V1-Flash → GLM-5.2），90.8 → 91.8；科研长任务中 Harness 的作用可能比单纯换模型更显著。
 - **GLM-5.3 暂列综合第一（待 02 确认）**：D01 = 93.3 表现突出；02（Auton 2015）结果未出，暂按 01 分数计入，综合总分暂定 **93.3**。此为暂定排名——在 02 实测前，尚不能把「GLM-5.3 一定综合第一」当作定论。
 
@@ -69,6 +69,7 @@
 
 - 完整审稿式评测（评分依据、claim 级证据、方法学披露）：[benchmarks/Review/260816 bench.txt](../benchmarks/Review/260816%20bench.txt)
 - Case 详情：Tyson 2004（[benchmarks/tyson2004/](../benchmarks/tyson2004/)）、1000 Genomes Phase 3（[benchmarks/humangenomics/](../benchmarks/humangenomics/)）
+- dsh-science 插件（执行评测的 Harness 插件）：<https://github.com/biociao/dsh-science>
 - 完整榜单与更新记录：[docs/leaderboard.md](../docs/leaderboard.md)
 
 ## 下期（R03）改进

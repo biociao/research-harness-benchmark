@@ -39,6 +39,8 @@ Scoring scale: Round 01 (initial) used 0–10; from Round 02 onward the scale is
 
 > **Scoring convention (fixed)**: five-dimension weighted score `Total = Literature×15% + Understanding×30% + Reproduction×25% + Experiments/Visualization×20% + Process×10%` (0–100 scale).
 > **Combined total = average of the project scores across completed projects 01 and 02**; an unfinished project is provisionally counted at the completed project's score (see D's 02) and updated after actual measurement — the ranking is provisional.
+>
+> **About the harness name**: **dsh-science** (earlier records write DSH / dsh) in this leaderboard is a research-scenario plugin running on top of DeepSeek Harness that executes this repository's evaluation tasks; source & docs at <https://github.com/biociao/dsh-science>. From R02 onward we consistently use dsh-science; historical rounds (R01) keep their original records.
 
 This round covers two classic paper reproduction projects:
 
@@ -64,15 +66,15 @@ This round covers two classic paper reproduction projects:
 Research Harness Leaderboard (R02 · Combined Total /100)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-D  DSH × GLM-5.3
+D  dsh-science × GLM-5.3
 █████████████████████████████████████████████  93.3†
         ↑ Provisional combined Rank #1 (02 pending, counted at 01)
 
-C  DSH × GLM-5.2
+C  dsh-science × GLM-5.2
 ████████████████████████████████████████████  91.8
         ↑ Combined Rank #2
 
-A  DSH × DeepSeek-V1-Flash
+A  dsh-science × DeepSeek-V1-Flash
 ███████████████████████████████████████████  90.8
         ↑ Combined Rank #3
 
@@ -89,26 +91,26 @@ B  Claude Science × DeepSeek-V1-Flash
 
 | Harness | LLM | Literature | Understanding | Reproduction | Experiments | Process | Project score |
 |---|---|---:|---:|---:|---:|---:|---:|
-| C · DSH | GLM-5.2 | 89 | 92 | **94** | 92 | 84 | **91.0** |
-| A · DSH | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
+| C · dsh-science | GLM-5.2 | 89 | 92 | **94** | 92 | 84 | **91.0** |
+| A · dsh-science | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
 | B · Claude Science | DeepSeek-V1-Flash | 84 | 86 | 85 | 84 | 80 | **84.4** |
-| D · DSH | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
+| D · dsh-science | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
 
 **02｜Auton 2015 (1000 Genomes Phase 3)**
 
 | Harness | LLM | Literature | Understanding | Reproduction | Experiments | Process | Project score |
 |---|---|---:|---:|---:|---:|---:|---:|
-| C · DSH | GLM-5.2 | 90 | **94** | **95** | **94** | 86 | **92.5** |
-| A · DSH | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
+| C · dsh-science | GLM-5.2 | 90 | **94** | **95** | **94** | 86 | **92.5** |
+| A · dsh-science | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
 | B · Claude Science | DeepSeek-V1-Flash | 85 | 88 | 88 | 87 | 82 | **87.1** |
-| D · DSH | GLM-5.3 | — | — | — | — | — | **93.3†** |
+| D · dsh-science | GLM-5.3 | — | — | — | — | — | **93.3†** |
 
 **†** D's 02 result is not yet available; provisionally counted at the 01 score (93.3), to be updated after actual measurement.
 
 #### Key Conclusions of This Round
 
-- **Harness Effect ≈ +5 points**: A and B use the same LLM (DeepSeek-V1-Flash); DSH (90.8) beats Claude Science (85.8) by **5.0 points** — this benchmark measures harness structure differences, not just LLM differences.
-- **Swapping to a stronger model on the same harness gains only 1.0 point**: A → C (DeepSeek-V1-Flash → GLM-5.2 on DSH), 90.8 → 91.8. In long research tasks, the harness may matter more than simply switching models.
+- **Harness Effect ≈ +5 points**: A and B use the same LLM (DeepSeek-V1-Flash); dsh-science (90.8) beats Claude Science (85.8) by **5.0 points** — this benchmark measures harness structure differences, not just LLM differences.
+- **Swapping to a stronger model on the same harness gains only 1.0 point**: A → C (DeepSeek-V1-Flash → GLM-5.2 on dsh-science), 90.8 → 91.8. In long research tasks, the harness may matter more than simply switching models.
 - **GLM-5.3 provisionally #1 (pending 02)**: D01 = 93.3 is outstanding; 02 (Auton 2015) is not yet available and is counted at the 01 score, giving a provisional combined total of **93.3**. This is a provisional ranking — until 02 is actually measured, "GLM-5.3 is definitely #1" cannot be treated as settled.
 
 #### Detail Report Entry Points
@@ -120,6 +122,7 @@ B  Claude Science × DeepSeek-V1-Flash
 | Full leaderboard & changelog | [docs/leaderboard.md](docs/leaderboard.md) |
 | Case details: Tyson 2004 | [benchmarks/tyson2004/](benchmarks/tyson2004/) |
 | Case details: 1000 Genomes Phase 3 (Auton 2015) | [benchmarks/humangenomics/](benchmarks/humangenomics/) |
+| dsh-science plugin (the harness plugin running the evaluations) | <https://github.com/biociao/dsh-science> |
 
 > **Join the evaluation**: You are welcome to reproduce the tasks above with your own LLM (Claude, GPT, etc.) × Harness tool and submit your report to this repository, so we can benchmark it together for a more comprehensive reference.
 
