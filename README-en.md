@@ -140,6 +140,35 @@ Task: independently reproduce the computational reconstruction of the environmen
 >
 > Full leaderboard (with changelog) at [docs/leaderboard.md](docs/leaderboard.md); per-round evaluation notes at [evaluations/](evaluations/).
 
+## Contributing Benchmark Results
+
+You are welcome to reproduce the tasks above (or any case under [benchmarks/](benchmarks/)) with your own LLM (Claude, GPT, etc.) × Harness tool and submit your evaluation results to this repository for head-to-head comparison. **Only results following the same scoring convention and the same benchmark version can enter the leaderboard.**
+
+**What to submit** (see [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/benchmark-protocol.md](docs/benchmark-protocol.md)):
+
+| Item | Requirement |
+|---|---|
+| System info | system name / version / type (Harness / LLM / Skill) |
+| Benchmark version | which benchmark version was used (e.g., Tyson2004-v1, Auton2015-v1); **different versions are not directly comparable** |
+| Raw five-dimension scores | D1–D5 raw scores (0–100 scale from R02 onward, computed with the weighted formula above) |
+| Claim-level evidence | status per claim (`reproduced / partially / not_reproduced / contradicted`) with evidence paths |
+| Reproducible deliverables | code / pinned environment / execution logs / result artifacts / provenance (reproducibility levels R0–R4) |
+| Review info | reviewer identity & date; scores ≥ 9.0 should have a second reviewer or clean-room verification |
+
+**How to submit**:
+
+1. Put your reproduction report and evidence in `benchmarks/<case>/reports/`;
+2. Open a new round record in [evaluations/](evaluations/) (incrementing round number);
+3. Append your scores to [docs/leaderboard.md](docs/leaderboard.md) (with a reviewer scorecard for traceability).
+
+**Not allowed**:
+- Comparing directly across different benchmark versions;
+- Claiming reproduction without execution evidence;
+- Deleting failed experiment records (failure is evidence);
+- Substituting promotional material for verifiable evidence.
+
+Scoring rubric: [docs/rubric.md](docs/rubric.md); submission protocol: [docs/benchmark-protocol.md](docs/benchmark-protocol.md); full contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Core Principles
 
 1. **Claim-first**: define the scientific claims to verify before evaluating the agent.

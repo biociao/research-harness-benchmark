@@ -140,6 +140,35 @@ B  Claude Science × DeepSeek-V1-Flash
 >
 > 完整榜单（含更新记录）见 [docs/leaderboard.md](docs/leaderboard.md)；每期评测评价见 [evaluations/](evaluations/)。
 
+## 贡献测评结果（Contributing）
+
+欢迎用你的 LLM（Claude、GPT 等）× Harness 工具复现上述题目（或 [benchmarks/](benchmarks/) 下任一 case），把测评结果提交到本仓库，一起参与横向比较。**只有遵循同一评分口径、同一 benchmark version 的结果才能进入排行榜。**
+
+**提交内容**（详见 [CONTRIBUTING.md](CONTRIBUTING.md) 与 [docs/benchmark-protocol.md](docs/benchmark-protocol.md)）：
+
+| 项 | 要求 |
+|---|---|
+| 系统信息 | system 名称 / 版本 / 类型（Harness / LLM / Skill） |
+| 基准版本 | 使用的 benchmark version（如 Tyson2004-v1、Auton2015-v1）；**不同版本不可直接比较** |
+| 五维原始分数 | D1–D5 原始分（R02 起 0–100 制，按上方加权公式计算） |
+| Claim 级证据 | 每个 claim 的状态（`reproduced / partially / not_reproduced / contradicted`）与证据路径 |
+| 可复现交付 | 代码 / 环境锁定 / 执行日志 / 结果 artifact / provenance（复现等级 R0–R4） |
+| 评审信息 | reviewer 身份与日期；9 分以上建议第二位 reviewer 或 clean-room verification |
+
+**提交流程**：
+
+1. 复现报告与证据放入 `benchmarks/<case>/reports/`；
+2. 在 [evaluations/](evaluations/) 新建一轮评测记录（Round 编号递增）；
+3. 将成绩追加到 [docs/leaderboard.md](docs/leaderboard.md)（附 reviewer scorecard 以便回溯）。
+
+**禁止**：
+- 用不同 benchmark version 直接比较；
+- 没有执行证据却宣称复现；
+- 删除失败实验记录（failure is evidence）；
+- 用宣传材料代替可核查证据。
+
+评分标准见 [docs/rubric.md](docs/rubric.md)；提交协议见 [docs/benchmark-protocol.md](docs/benchmark-protocol.md)；完整贡献指南见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
 ## 核心原则
 
 1. **Claim-first**：先定义要验证的科学论断，再评价 Agent。
