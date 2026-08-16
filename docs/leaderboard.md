@@ -1,11 +1,52 @@
 # 科研场景 Harness 能力排行榜
 
 > 榜单规则：同版 benchmark 才能横向比较；评分必须绑定证据（E0–E4），见 [benchmark-protocol.md](benchmark-protocol.md) 与 [rubric.md](rubric.md)。
-> 评分口径（R02 起）：五维加权 0–100 制，`总分 = 文献检索×15% + 内容理解×30% + 代码复现×25% + 实验/可视化×20% + 研究过程×10%`；综合总分 = 已完成 01、02 两项目的项目分平均值；未完成项目暂按已完成项目分数占位计入（待实测后更新，排名为暂定）。
+> 评分口径（R02 起）：五维加权 0–100 制，`总分 = 文献检索×15% + 内容理解×30% + 代码复现×25% + 实验/可视化×20% + 研究过程×10%`；综合总分 = 已完成 01、02 两项目的项目分平均值；未完成项目暂按已完成项目分数占位计入（待实测后更新，排名为暂定）。R03 起六组合均已完成两项目实测，无占位分。
 >
 > **Harness 说明**：榜单中的 **dsh-science**（早期记录写作 DSH / dsh）是运行于 DeepSeek Harness 之上的科研场景插件，负责执行本仓库的评测任务；源码与文档见 <https://github.com/biociao/dsh-science>。R02 起统一使用 dsh-science 表述，历史轮次（R01）保留原始记录。
 
-## Round 02（最新）— 双项目综合榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
+## Round 03（最新）— 六系统双项目复评榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
+
+> R03 为外部评审对 12 份复现报告（6 组合 × 2 论文）的逐份审稿式复评：评审按 0–10 制打分，本榜 ×10 换算为 0–100 制；综合总分取评审给出的综合分（D/E 因勘误互换按两项目平均重算）。组合字母沿用 R02 编号（A–E 身份经报告内容核对沿用；**F 为新增组合（dsh-science × kimi k3，身份已补录）**）。**D 的 02 为本轮首次实测**，R02 的 93.3† 占位值由此关闭。**勘误（2026-08-17）**：评审原文将 D02 与 E02 标注互换（ARI 0.9106 / vcftools 逐位一致的报告实为 D02、ARI 0.872 的报告实为 E02），入库时已按正确归属调换：D02=92 / E02=86。评测记录：[evaluations/round-03-six-system-combined.md](../evaluations/round-03-six-system-combined.md)。
+
+| Rank | Harness | LLM | 01 项目分 | 02 项目分 | **综合总分 /100** | 显著特点 |
+|---:|---|---|---:|---:|---:|---|
+| 🥇 1 | dsh-science | GLM-5.2 | 94 | 92 | **93** | 最均衡，科研复现工程化程度最高：provenance 链、oracle 式交叉验证（Fst 与 vcftools 逐位一致 0.02388 / n=7,335）、环境锁定与单机重跑说明 |
+| 🥈 2 | dsh-science | GLM-5.3 | 93 | 92 | **92.5** | 两个项目都强：Tyson（H1–H4→E01–E04 结构、nif 归属科学修正）+ 1000G claim-level 全 PASS（ARI 0.9106、WC84 Fst 与 vcftools 逐位一致），留存 bug 修复 provenance |
+| 🥉 3 | dsh-science | DeepSeek-V1-Flash | 91 | 91 | **91** | 科学推理强：发现 GenBank 沉积组装与论文不一致并独立重组装；方法学差异披露与结果验证充分 |
+| 4 | dsh-science | kimi k3 | 83 | 90 | **87** | 严谨：未获全文/canu→miniasm 等边界如实披露；显式环境锁定、自实现 WC84 Fst、下载截断 Content-Length 校验重试；4/5 claim 支持 |
+| 5 | Claude Science | DeepSeek-V1-Flash | 82 | 86 | **84** | 科学判断不错（ARI 0.87 未强行 PASS），但工程化证据链明显落后 |
+| 6 | workbuddy（auto 模式） | GLM-5.2 | 77 | 86 | **81.5⚠️** | Tyson 报告"仪表盘化"、深度不足；1000G（86）好于 01，C4 ARI 0.872 未达 0.9 阈值但如实报告并解释 AMR 原因 |
+
+**⚠️ E01 评审冲突**：R03 评审给出 E01 = 77，其关键数值（2,731 scaffolds / 16.5 Mb / 5 bins / 18,214 genes）与 R02 收录的 workbuddy 同一提交完全一致，而 R02 的 GPT-5.6 审稿判定该提交 **53.0 / Major Revision（复现未成立）**（binning 采用 NCBI 既有 assignment、数据来源链断裂，见[评审全文](../benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md)）。R03 评审未涉及上述问题；两轮结论冲突，E 的分数与名次待第三方评审 / clean-room 核验裁决，暂按 R03 评审收录、R02 结论保留在案。另：按两项目平均 E 综合为 81.5、按固定公式复算为 82.5，均为第 6。
+
+### 分项目评分
+
+**01｜Tyson 2004**
+
+| 组合 | Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| C | dsh-science | GLM-5.2 | 95 | 96 | **97** | 93 | 88 | **94** |
+| D | dsh-science | GLM-5.3 | 94 | 96 | 95 | **94** | 88 | **93** |
+| A | dsh-science | DeepSeek-V1-Flash | 90 | 94 | 92 | 90 | 87 | **91** |
+| F | dsh-science | kimi k3 | 80 | 87 | 84 | 82 | 80 | **83** |
+| B | Claude Science | DeepSeek-V1-Flash | 80 | 87 | 81 | 82 | 80 | **82** |
+| E | workbuddy（auto） | GLM-5.2 | 75 | 82 | 75 | 78 | 76 | **77⚠️** |
+
+**02｜Auton 2015（1000 Genomes Phase 3）**
+
+| 组合 | Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| C | dsh-science | GLM-5.2 | 90 | **94** | **96** | **92** | **88** | **92** |
+| D | dsh-science | GLM-5.3 | **91** | **94** | **96** | **92** | 87 | **92** |
+| A | dsh-science | DeepSeek-V1-Flash | 90 | **94** | 94 | 90 | 87 | **91** |
+| F | dsh-science | kimi k3 | 90 | 93 | 92 | 91 | 85 | **90** |
+| B | Claude Science | DeepSeek-V1-Flash | 87 | 89 | 88 | 86 | 80 | **86** |
+| E | workbuddy（auto） | GLM-5.2 | 82 | 90 | 89 | 88 | 80 | **86** |
+
+## Round 02 — 双项目综合榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
+
+> 历史轮次，最新结果以 Round 03 为准。D 的 02 已在 R03 首次实测（92 → 综合 92.5），本榜的 93.3† 暂定值与"暂列第一"状态已被 R03 结果取代。
 
 | Rank | System | Harness | LLM | 01 项目分 | 02 项目分 | **综合总分 /100** | Status | 显著特点 |
 |---:|---|---|---|---:|---:|---:|---|---|
@@ -54,6 +95,14 @@
 
 ## 解读
 
+**Round 03**
+
+- **R02 的 93.3† 占位关闭，C 确认榜首**：D 的 02（Auton 2015）首次实测得 92，综合 **92.5（第 2）**，与 C（93）仅差 0.5——名次顺序在评审间方差（±3 分）内，不宜过度解读。R02"待实测后更新排名"的谨慎表述被证明是必要的。
+- **推荐梯队（评审）：第一梯队 C ≈ A ≈ D**——C 工程型冠军（provenance/交叉验证最完整）、A 推理型冠军（数据沉积异常发现）、D 深度科研型冠军（Tyson 分析深度 + 1000G claim-level 全 PASS）；F 严谨但产品化略逊；B 工程证据链弱一档；E 任务完成合格但 Tyson 报告深度不足。勘误互换后分值顺序为 C 93 > D 92.5 > A 91（前三差距在评审方差内）> F 87 > B 84 > E 81.5。
+- **证据闭环拉开差距**：高分组合的共同点是 `claim → 数据 → 代码 → 独立验证 → 局限` 闭环（C02 Fst 与 vcftools 逐位交叉验证 0.02388 / n=7,335；D02 记录 bug 修复后重跑）；"发现复现失败并如实报告"（B02 ARI 0.87、E02 ARI 0.872、F02 4/5 claim）被评审认定为高分行为。
+- **最大共同问题——chr21 近似被表述为全基因组复现**：多数 1000G 报告以 chr21 支撑全基因组 / 26×26 claim；评审建议正式结论严格区分 "claim supported" 与 "paper-level exact reproduction"，这是本轮 1000G 单项无人满分的原因。
+- **评审间方差 ±3 分**：同一提交在 R02/R03 两轮评审下项目分差 ±3 以内（C01 91.0→94、D01 93.3→93、A01 90.6→91、B01 84.4→82），唯 E01 例外（53.0→77，R03 评审未核查 binning 独立性）。单人评审下 1–2 分的名次差异不足以定性。
+
 **Round 02**
 
 - **Harness Effect ≈ +5 分**：A 与 B 同为 DeepSeek-V1-Flash，dsh-science（90.8）比 Claude Science（85.8）高 5.0 分，说明 benchmark 测到的主要是 Harness 结构差异。
@@ -76,6 +125,7 @@
 
 ## 更新记录
 
+- **R03（最新，2026-08-17）**：六系统双项目复评入榜——外部评审 12 份报告（A–F × 2 论文，0–10 制 ×10 换算；**入库时勘误：评审原文 D02/E02 标注互换，已按正确归属调换**，D02=92 / E02=86）：**C·dsh-science×GLM-5.2 综合 93 第一**，D·dsh-science×GLM-5.3 **92.5** 第二（02 首次实测 92，R02 的 93.3† 占位关闭），A **91** 第三，新增组合 F（dsh-science × kimi k3）**87** 第四，B **84** 第五，E·workbuddy **81.5⚠️** 第六（E01 与 R02 GPT-5.6 审稿的 53.0 Major Revision 结论冲突，同一提交两轮分差 24 分，待第三方裁决）。评审全文见 [evaluations/round-03-A-F.md](../evaluations/round-03-A-F.md)（顶部附勘误说明），评测记录见 [evaluations/round-03-six-system-combined.md](../evaluations/round-03-six-system-combined.md)。
 - **R02 增补（2026-08-16）**：收录 workbuddy（auto 模式）× GLM-5.2 的 01（Tyson 2004）评审——GPT-5.6 审稿，五维加权 **53.0 / 100**，结论 Major Revision / 复现未成立，暂列综合榜第 5（02 未测）。评审全文见 [benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md](../benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md)，评测记录见 [evaluations/round-02-workbuddy-auto-glm5.2.md](../evaluations/round-02-workbuddy-auto-glm5.2.md)。
 - **R02（最新）**：双项目综合评测（Tyson2004-v1 + Auton2015），评分口径固定为 0–100 制五维加权；D·dsh-science×GLM-5.3 **93.3†** 暂列综合第一（02 未出、暂按 01 计入，待实测更新），C·dsh-science×GLM-5.2 **91.8** 第二，A·dsh-science×DeepSeek-V1-Flash **90.8** 第三，B·Claude Science **85.8** 第四。完整审稿记录见 [benchmarks/Review/260816 bench.txt](../benchmarks/Review/260816%20bench.txt)，评测记录见 [evaluations/round-02-two-project-combined.md](../evaluations/round-02-two-project-combined.md)。
 - **v0.1（初始）**：Tyson2004-v1，DSH 科研代理 9.10 vs Claude Science 8.00；新增 Harness/LLM 版本列（待补录）。

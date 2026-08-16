@@ -31,11 +31,111 @@ This repository provides:
 
 `Score = 0.15*D1 + 0.30*D2 + 0.25*D3 + 0.20*D4 + 0.10*D5`
 
-Scoring scale: Round 01 (initial) used 0–10; from Round 02 onward the scale is unified to 0–100 (weights unchanged, scoring convention fixed).
+Scoring scale: Round 01 (initial) used 0–10; from Round 02 onward the scale is unified to 0–100 (weights unchanged, convention fixed; R03 reviews in the 0–10 scale were converted ×10 when recorded).
 
 ## Evaluation Rounds
 
-### Round 02 (Latest) — Two-Project Combined Evaluation
+### Round 03 (Latest) — Six-System Two-Project Re-evaluation (A–F × 2 papers)
+
+> **Scoring convention**: same five-dimension weighted formula as R02 (0–100 scale). This round is an external peer-review-style re-evaluation of **12 reproduction reports** (6 combos × 2 papers); the reviewer scored on a 0–10 scale, converted ×10 into this leaderboard, with the combined total taken from the reviewer's overall score (D/E recomputed as the two-project average after the D02/E02 erratum; formula-recomputed values are in the round record).
+> **Combo letters carry over from R02** (A–E identities verified against report contents); **F is a new combo (dsh-science × kimi k3, identity now recorded)**. **D's 02 (Auton 2015) was measured for the first time this round**, closing R02's 93.3† provisional value.
+> **Erratum (2026-08-17)**: the original review swapped the D02 and E02 labels (the ARI 0.9106 / vcftools bit-identical report is actually D02; the ARI 0.872 report is actually E02). Corrected on ingestion: D02=92 / E02=86, with D/E combined totals recomputed (92.5 / 81.5).
+
+#### Official Combined Leaderboard (R03)
+
+| Rank | Combo | Harness | LLM | Total /100 | Project scores | Highlights |
+|---|---|---|---|---:|---|---|
+| 🥇 **1** | **C** | dsh-science | GLM-5.2 | **93** | 01 **94** / 02 **92** | **Most balanced, highest engineering maturity**: provenance chain, oracle-style cross-validation (Fst bit-identical with vcftools, 0.02388 / n=7,335), pinned environment & single-machine rerun guide |
+| 🥈 **2** | **D** | dsh-science | GLM-5.3 | **92.5** | 01 **93** / 02 **92** | **Strong on both projects**: Tyson (H1–H4→E01–E04 structure, nif reassignment correction) + 1000G claim-level all-PASS (ARI 0.9106, WC84 Fst bit-identical with vcftools), with bug-fix provenance; 02 measured for the first time |
+| 🥉 **3** | **A** | dsh-science | DeepSeek-V1-Flash | **91** | 01 **91** / 02 **91** | **Strongest scientific reasoning**: found the GenBank deposit inconsistent with the paper's assembly and independently re-assembled; thorough disclosure of methodological differences |
+| 4 | **F** | dsh-science | kimi k3 | **87** | 01 **83** / 02 **90** | **Rigorous, strong reproduction discipline**: honest boundary disclosure (full text not obtained; canu→miniasm switch); explicit lock files, own WC84 Fst implementation, download-truncation retry with Content-Length check; 4/5 claims supported |
+| 5 | **B** | Claude Science | DeepSeek-V1-Flash | **84** | 01 **82** / 02 **86** | Good scientific judgment, but engineering clearly lags behind |
+| 6 | **E** | workbuddy (auto) | GLM-5.2 | **81.5**⚠️ | 01 **77** / 02 **86** | Tyson report too "dashboard-like", lacking depth; 02 better than 01 (C4 ARI 0.872 below the 0.9 threshold but honestly reported); ⚠️ conflicts with the R02 review verdict — rank provisional (see below) |
+
+**⚠️ E01 review conflict**: the R03 reviewer gave E01 = 77, and its key numbers (2,731 scaffolds / 16.5 Mb / 5 bins / 18,214 genes) exactly match the workbuddy submission already reviewed in R02, where GPT-5.6 concluded **53.0 / Major Revision (reproduction not established)** (binning taken directly from existing NCBI assignments; broken data provenance). The R03 review did not address those issues, so the two verdicts on the same submission conflict (a 24-point gap); E's score and rank await third-party review / clean-room verification. This leaderboard provisionally adopts the R03 review while keeping the R02 verdict on record.
+
+#### Total Score Ladder Chart
+
+```text
+Research Harness Leaderboard (R03 · Combined Total /100)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+C  dsh-science × GLM-5.2
+██████████████████████████████████████  93
+        ↑ Combined Rank #1 (engineering champion: provenance + cross-validation)
+
+D  dsh-science × GLM-5.3
+██████████████████████████████████████  92.5
+        ↑ Combined Rank #2 (02 first measured 92; 0.5 behind C, within reviewer variance)
+
+A  dsh-science × DeepSeek-V1-Flash
+█████████████████████████████████████  91
+        ↑ Combined Rank #3 (reasoning champion: data-deposit anomaly finding)
+
+F  dsh-science × kimi k3
+██████████████████████████████████  87
+        ↑ Combined Rank #4 (rigorous: boundary disclosure + engineering standards)
+
+B  Claude Science × DeepSeek-V1-Flash
+████████████████████████████████  84
+        ↑ Combined Rank #5 (good science, one-tier-weaker engineering)
+
+E  workbuddy (auto) × GLM-5.2
+██████████████████████████████  81.5⚠️
+        ↑ ⚠️ Conflicts with R02 Major Revision verdict — rank provisional
+
+  50        60        70        80        90        100
+```
+
+#### Per-Project Scores
+
+**01｜Tyson 2004**
+
+| Combo | Harness | LLM | Literature | Understanding | Reproduction | Experiments | Process | Project score |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| **C** | dsh-science | GLM-5.2 | **95** | **96** | **97** | 93 | **88** | **94** |
+| **D** | dsh-science | GLM-5.3 | 94 | **96** | 95 | **94** | **88** | **93** |
+| **A** | dsh-science | DeepSeek-V1-Flash | 90 | 94 | 92 | 90 | 87 | **91** |
+| **F** | dsh-science | kimi k3 | 80 | 87 | 84 | 82 | 80 | **83** |
+| **B** | Claude Science | DeepSeek-V1-Flash | 80 | 87 | 81 | 82 | 80 | **82** |
+| **E** | workbuddy (auto) | GLM-5.2 | 75 | 82 | 75 | 78 | 76 | **77⚠️** |
+
+**02｜Auton 2015 (1000 Genomes Phase 3)**
+
+| Combo | Harness | LLM | Literature | Understanding | Reproduction | Experiments | Process | Project score |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| **C** | dsh-science | GLM-5.2 | 90 | **94** | **96** | **92** | **88** | **92** |
+| **D** | dsh-science | GLM-5.3 | **91** | **94** | **96** | **92** | 87 | **92** |
+| **A** | dsh-science | DeepSeek-V1-Flash | 90 | **94** | 94 | 90 | 87 | **91** |
+| **F** | dsh-science | kimi k3 | 90 | 93 | 92 | 91 | 85 | **90** |
+| **B** | Claude Science | DeepSeek-V1-Flash | 87 | 89 | 88 | 86 | 80 | **86** |
+| **E** | workbuddy (auto) | GLM-5.2 | 82 | 90 | 89 | 88 | 80 | **86** |
+
+#### Key Conclusions of This Round
+
+- **R02's 93.3† placeholder closed; C confirmed at the top**: D's 02 was measured for the first time (92) → combined **92.5 (Rank 2)**, only 0.5 behind C (93) — the C/D ordering is within inter-reviewer variance (±3 points) and should not be over-interpreted. R02's "update after actual measurement" handling proved necessary.
+- **Evidence loops separate the field**: top combos share the closed loop `paper claim → raw data → code → independent verification → conclusion → limitations` (C02's bit-level vcftools cross-validation; D02's post-bugfix rerun log) — "writing a pretty report" is not the dividing line; building an evidence loop is.
+- **Finding reproduction failures is high-score behavior**: B02's ARI 0.87 not forced to PASS; E02's ARI 0.872 honestly reported with an AMR explanation; F02's 4/5 claims supported; F01's un-obtained full text / unfinished parts honestly marked; A01's ~2× methodological difference disclosed; D01's nif reassignment correction — consistent with this project's "Failure is evidence" principle.
+- **Biggest common problem — chr21 approximations presented as whole-genome reproduction**: most 1000G reports support C4 PCA / burden / Fst / some variant counts with chr21, while the paper is genome-wide / 26×26; the reviewer recommends strictly distinguishing **"claim supported"** from **"paper-level exact reproduction"** (also why no 1000G single score reached full marks this round). R04 plans to encode this in the rubric.
+- **Recommended tiers (reviewer): tier 1 C ≈ A ≈ D** (C engineering champion / A reasoning champion / D deep-research champion), tier 2 F, tier 3 B, tier 4 E; after the erratum swap the score order is **C 93 > D 92.5 > A 91** (top-three gaps within reviewer variance) **> F 87 > B 84 > E 81.5**.
+- **Inter-reviewer variance ±3 points**: the same submissions scored within ±3 across R02/R03 (C01 91.0→94, D01 93.3→93, A01 90.6→91, B01 84.4→82), with E01 the sole exception (53.0→77) — under single-reviewer scoring, rank gaps of 1–2 points are not conclusive; high scores need a second reviewer.
+
+#### Detail Report Entry Points
+
+| Content | Link |
+|---|---|
+| R03 full review (per-report scoring of 12 reports, cross-cutting findings, tier recommendation) | [evaluations/round-03-A-F.md](evaluations/round-03-A-F.md) |
+| Round 03 evaluation record (structured, with combo-identity verification and cross-round checks) | [evaluations/round-03-six-system-combined.md](evaluations/round-03-six-system-combined.md) |
+| Full leaderboard & changelog | [docs/leaderboard.md](docs/leaderboard.md) |
+| Case details: Tyson 2004 | [benchmarks/tyson2004/](benchmarks/tyson2004/) |
+| Case details: 1000 Genomes Phase 3 (Auton 2015) | [benchmarks/humangenomics/](benchmarks/humangenomics/) |
+| dsh-science plugin (the harness plugin running the evaluations) | <https://github.com/biociao/dsh-science> |
+
+> **Join the evaluation**: You are welcome to reproduce the tasks above with your own LLM (Claude, GPT, etc.) × Harness tool and submit your report to this repository, so we can benchmark it together for a more comprehensive reference.
+
+### Round 02 — Two-Project Combined Evaluation (Historical)
+
+> Historical round; for the latest results see Round 03 above. D's 02 was first measured in R03 (92 → combined 92.5), so this section's provisional 93.3† value and "provisionally #1" status have been superseded by R03 results.
 
 > **Scoring convention (fixed)**: five-dimension weighted score `Total = Literature×15% + Understanding×30% + Reproduction×25% + Experiments/Visualization×20% + Process×10%` (0–100 scale).
 > **Combined total = average of the project scores across completed projects 01 and 02**; an unfinished project is provisionally counted at the completed project's score (see D's 02) and updated after actual measurement — the ranking is provisional.
@@ -128,7 +228,7 @@ B  Claude Science × DeepSeek-V1-Flash
 
 ### Round 01 (Initial Baseline) — Tyson2004-v1
 
-> Historical round; for the latest results see Round 02 above.
+> Historical round; for the latest results see Round 03 above.
 
 Task: independently reproduce the computational reconstruction of the environmental microbiome/genome work in Tyson et al. 2004.
 
@@ -205,6 +305,7 @@ This project therefore incorporates code, dependencies, environment, data proven
 - [x] Research credibility-weighted leaderboard
 - [x] Second life-science benchmark (multi-omics: human genomics [humangenomics](benchmarks/humangenomics/) + transcriptomics [love2014](benchmarks/love2014/) + single-cell [zeisel2015](benchmarks/zeisel2015/))
 - [x] Round 02 two-project combined evaluation (R02: Tyson2004 + 1000 Genomes Phase 3, four-system A/B/C/D comparison, 0–100 scoring convention fixed)
+- [x] Round 03 six-system two-project re-evaluation (R03: A–F × 2 papers, 12 reports; D/E's 02 first measured, new combo F added; R02 provisional ranking closed, E01 review conflict flagged, D02/E02 label swap corrected on ingestion)
 - [ ] Chemistry / materials benchmark
 - [ ] Clinical literature & data analysis benchmark
 - [ ] Unified submission format for Agent / LLM / Skill
