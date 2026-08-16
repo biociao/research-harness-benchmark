@@ -1,5 +1,7 @@
 # 科研场景 Harness 能力评价（Research Harness Benchmark）
 
+> 🌐 **语言切换 / Language：** [**English**](README-en.md) ｜ 中文
+
 一个面向 **Agent / LLM / Skill / Harness** 的科研能力公开评价框架。
 
 目标不是评“谁聊天更聪明”，而是评价一个系统能否在真实科研任务中完成：
@@ -29,22 +31,110 @@
 
 `Score = 0.15*D1 + 0.30*D2 + 0.25*D3 + 0.20*D4 + 0.10*D5`
 
-评分采用 0–10 分。
+评分制：初始轮（R01）采用 0–10 分；最新轮（R02）起统一为 0–100 分（五维权重不变，评分口径已固定）。
 
-## 第一轮 Benchmark
+## 评测轮次
 
-### Tyson et al. (2004)
+### Round 02（最新）— 双项目综合评测
+
+> **评分口径（已固定）**：五维加权分 `总分 = 文献检索×15% + 内容理解×30% + 代码复现×25% + 实验/可视化×20% + 研究过程×10%`（0–100 制）。
+> **综合总分 = 已完成 01、02 两项目的项目分平均值**；未完成项目暂按已完成项目分数占位计入（见 D 的 02），待实测后更新，排名为暂定。
+
+本轮包含两个经典论文复现项目：
+
+| 项目 | 论文 | 科研任务核心 |
+|---|---|---|
+| **01** | [Tyson et al. 2004, *Nature*](benchmarks/tyson2004/) | AMD 环境宏基因组：微生物基因组重构、分箱、代谢与群体变异 |
+| **02** | [Auton et al. 2015, *Nature*](benchmarks/humangenomics/) | 1000 Genomes Phase 3 人群遗传学核心论断独立复现（VCF 计算 / PCA / Fst） |
+
+#### 正式综合排行榜（R02）
+
+| Rank | Harness | LLM | 总分 /100 | 项目分 | 综合评价 |
+|---|---|---:|---|---|---|
+| 🥇 **1** | **dsh-science** | **GLM-5.3** | **93.3†** | 01 **93.3** /02 **93.3†** | **暂列第一**；01 表现突出，02 结果未出、暂按 01 分数计入 |
+| 🥈 **2** | **dsh-science** | **GLM-5.2** | **91.8** | 01 **91.0** / 02 **92.5** | 科研复现工程最完整；claim-level 验证、交叉工具、环境锁定、artifact/provenance 最成熟 |
+| 🥉 **3** | **dsh-science** | **DeepSeek-V1-Flash** | **90.8** | 01 **90.6** / 02 **91.0** | 综合科研能力很强；两个领域任务都稳定，方法学差异披露尤其好 |
+| 4 | **Claude Science** | **DeepSeek-V1-Flash** | **85.8** | 01 **84.4** / 02 **87.1** | 科研分析不错，但 Harness 工程化弱一档 |
+
+**†** D 的 02（Auton 2015）结果尚未产出，暂按 01 分数（93.3）计入；综合总分 93.3 为**暂定值**，待 02 实测后更新，届时排名可能变动。
+
+#### 总分天梯图
+
+```text
+科研 Harness Leaderboard（R02 · 综合总分 /100）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+D  DSH × GLM-5.3
+█████████████████████████████████████████████  93.3†
+        ↑ 暂列综合 Rank #1（02 未出，暂按 01 计）
+
+C  DSH × GLM-5.2
+████████████████████████████████████████████  91.8
+        ↑ 综合 Rank #2
+
+A  DSH × DeepSeek-V1-Flash
+███████████████████████████████████████████  90.8
+        ↑ 综合 Rank #3
+
+B  Claude Science × DeepSeek-V1-Flash
+█████████████████████████████████████████  85.8
+        ↑ 综合 Rank #4
+
+       80      85      90      95      100
+```
+
+#### 分项目成绩
+
+**01｜Tyson 2004**
+
+| Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| **C · DSH** | GLM-5.2 | 89 | 92 | **94** | 92 | 84 | **91.0** |
+| **A · DSH** | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
+| **B · Claude Science** | DeepSeek-V1-Flash | 84 | 86 | 85 | 84 | 80 | **84.4** |
+| **D · DSH** | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
+
+**02｜Auton 2015（1000 Genomes Phase 3）**
+
+| Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| **C · DSH** | GLM-5.2 | 90 | **94** | **95** | **94** | 86 | **92.5** |
+| **A · DSH** | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
+| **B · Claude Science** | DeepSeek-V1-Flash | 85 | 88 | 88 | 87 | 82 | **87.1** |
+| **D · DSH** | GLM-5.3 | — | — | — | — | — | **93.3†** |
+
+**†** D 的 02 结果尚未产出，暂按 01 分数（93.3）计入，待实测后更新。
+
+#### 本轮关键结论
+
+- **Harness Effect ≈ +5 分**：A 与 B 使用同一 LLM（DeepSeek-V1-Flash），DSH（90.8）比 Claude Science（85.8）高 **5.0 分**——当前 benchmark 测到的是 Harness 结构差异，而非单纯 LLM 差异。
+- **同一 Harness 换更强模型只提升 1.0 分**：A → C（DSH 上 DeepSeek-V1-Flash → GLM-5.2），90.8 → 91.8。提示在科研长任务中，Harness 的作用可能比单纯换模型更显著。
+- **GLM-5.3 暂列综合第一（待 02 确认）**：D01 = 93.3 表现突出；02（Auton 2015）结果未出，暂按 01 分数计入，综合总分暂定 **93.3**。此为暂定排名——在 02 实测前，尚不能把「GLM-5.3 一定综合第一」当作定论。
+
+#### 细节报告入口
+
+| 内容 | 入口 |
+|---|---|
+| 完整审稿式评测（评分依据、claim 级证据、方法学披露、排行榜） | [benchmarks/Review/260816 bench.txt](benchmarks/Review/260816%20bench.txt) |
+| Round 02 评测记录（结构化） | [evaluations/round-02-two-project-combined.md](evaluations/round-02-two-project-combined.md) |
+| 完整榜单与更新记录 | [docs/leaderboard.md](docs/leaderboard.md) |
+| Case 详情：Tyson 2004 | [benchmarks/tyson2004/](benchmarks/tyson2004/) |
+| Case 详情：1000 Genomes Phase 3（Auton 2015） | [benchmarks/humangenomics/](benchmarks/humangenomics/) |
+
+> **欢迎参与评测**：欢迎用你的 LLM（Claude、GPT 等）× Harness 工具复现上述题目，将报告提交到本仓库，一起参与评测比较，提供更全面的参考。
+
+### Round 01（初始基准）— Tyson2004-v1
+
+> 历史轮次，最新结果请以上方 Round 02 为准。
 
 任务：对 Tyson et al. 2004 的环境微生物组/基因组重建工作进行独立计算复现。
-
-### 排行榜（Tyson2004-v1）
 
 | Rank | System | Harness | LLM | D1 | D2 | D3 | D4 | D5 | Weighted | Evidence | 复现报告 |
 |---:|---|---|---|---:|---:|---:|---:|---:|---:|---|---|
 | 🥇 1 | DSH 科研代理 | DSH (DeepSeek Harness) | 待补录 | 9.0 | 9.2 | 9.3 | 8.8 | 9.0 | **9.10** | E2/E3 | [报告](benchmarks/tyson2004/reports/dsh-reproduction-report.md) |
 | 🥈 2 | Claude Science | Claude Science | 待补录 | 8.0 | 8.8 | 7.0 | 8.0 | 8.0 | **8.00** | E2 | [报告](benchmarks/tyson2004/reports/claude-science-reproduction-report.md) |
 
-> 加权分公式：`Score = 0.15*D1 + 0.30*D2 + 0.25*D3 + 0.20*D4 + 0.10*D5`（`scripts/score.py` 计算；Claude Science 精确值为 7.99，按 8.00 展示）。
+> 加权分公式：`Score = 0.15*D1 + 0.30*D2 + 0.25*D3 + 0.20*D4 + 0.10*D5`（`scripts/score.py` 计算；Claude Science 精确值为 7.99，按 8.00 展示；R01 为 0–10 制）。
 >
 > 这是本仓库初始化时的案例基准，不代表永久排名。后续所有新系统应使用同一 case、同一 rubric、同一证据要求重新评测，并将复现报告提交至 `benchmarks/<case>/reports/`。
 >
@@ -82,6 +172,7 @@
 - [x] Tyson 2004 初始 benchmark
 - [x] 科研可信度加权排行榜
 - [x] 第二个生命科学 benchmark（多组学：人基因组学 [humangenomics](benchmarks/humangenomics/) + 转录组学 [love2014](benchmarks/love2014/) + 单细胞 [zeisel2015](benchmarks/zeisel2015/)）
+- [x] 第二轮双项目综合评测（R02：Tyson2004 + 1000 Genomes Phase 3，A/B/C/D 四系统横向对比，0–100 制评分口径固定）
 - [ ] 化学/材料 benchmark
 - [ ] 临床文献与数据分析 benchmark
 - [ ] Agent / LLM / Skill 三类统一提交格式
