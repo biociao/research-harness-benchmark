@@ -57,8 +57,11 @@
 | 🥈 **2** | **dsh-science** | **GLM-5.2** | **91.8** | 01 **91.0** / 02 **92.5** | 科研复现工程最完整；claim-level 验证、交叉工具、环境锁定、artifact/provenance 最成熟 |
 | 🥉 **3** | **dsh-science** | **DeepSeek-V1-Flash** | **90.8** | 01 **90.6** / 02 **91.0** | 综合科研能力很强；两个领域任务都稳定，方法学差异披露尤其好 |
 | 4 | **Claude Science** | **DeepSeek-V1-Flash** | **85.8** | 01 **84.4** / 02 **87.1** | 科研分析不错，但 Harness 工程化弱一档 |
+| 5 | **workbuddy（auto 模式）** | **GLM-5.2** | **53.0‡** | 01 **53.0** / 02 未测 | ⚠️ **复现未成立（Major Revision）**：核心 binning 直接采用 NCBI 既有 assignment，复现 claim 不成立 |
 
 **†** D 的 02（Auton 2015）结果尚未产出，暂按 01 分数（93.3）计入；综合总分 93.3 为**暂定值**，待 02 实测后更新，届时排名可能变动。
+
+**‡** E（workbuddy auto × GLM-5.2）仅完成 01（Tyson 2004），GPT-5.6 审稿结论为 **Major Revision / 复现未成立**（53.0/100；标题曾写 56，按评审自身 rubric 复算为 53.0）。评审认为关键问题修复前不应进入正式排名，此处收录并明确标注状态。评审全文见 [benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md](benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md)。
 
 #### 总分天梯图
 
@@ -82,7 +85,11 @@ B  Claude Science × DeepSeek-V1-Flash
 █████████████████████████████████████████  85.8
         ↑ 综合 Rank #4
 
-       80      85      90      95      100
+E  workbuddy（auto）× GLM-5.2
+█████  53.0‡
+        ↑ ⚠️ 复现未成立（Major Revision），暂列榜末
+
+  50        60        70        80        90        100
 ```
 
 #### 分项目成绩
@@ -95,6 +102,7 @@ B  Claude Science × DeepSeek-V1-Flash
 | **A · dsh-science** | DeepSeek-V1-Flash | 90 | 92 | 93 | 90 | 82 | **90.6** |
 | **B · Claude Science** | DeepSeek-V1-Flash | 84 | 86 | 85 | 84 | 80 | **84.4** |
 | **D · dsh-science** | GLM-5.3 | 91 | **95** | **95** | **93** | 85 | **93.3** |
+| **E · workbuddy（auto）** | GLM-5.2 | 70 | 55 | 40 | 55 | 50 | **53.0‡** |
 
 **02｜Auton 2015（1000 Genomes Phase 3）**
 
@@ -104,6 +112,7 @@ B  Claude Science × DeepSeek-V1-Flash
 | **A · dsh-science** | DeepSeek-V1-Flash | 88 | 92 | 94 | 91 | 84 | **91.0** |
 | **B · Claude Science** | DeepSeek-V1-Flash | 85 | 88 | 88 | 87 | 82 | **87.1** |
 | **D · dsh-science** | GLM-5.3 | — | — | — | — | — | **93.3†** |
+| **E · workbuddy（auto）** | GLM-5.2 | — | — | — | — | — | **53.0‡** |
 
 **†** D 的 02 结果尚未产出，暂按 01 分数（93.3）计入，待实测后更新。
 
@@ -112,6 +121,7 @@ B  Claude Science × DeepSeek-V1-Flash
 - **Harness Effect ≈ +5 分**：A 与 B 使用同一 LLM（DeepSeek-V1-Flash），dsh-science（90.8）比 Claude Science（85.8）高 **5.0 分**——当前 benchmark 测到的是 Harness 结构差异，而非单纯 LLM 差异。
 - **同一 Harness 换更强模型只提升 1.0 分**：A → C（dsh-science 上 DeepSeek-V1-Flash → GLM-5.2），90.8 → 91.8。提示在科研长任务中，Harness 的作用可能比单纯换模型更显著。
 - **GLM-5.3 暂列综合第一（待 02 确认）**：D01 = 93.3 表现突出；02（Auton 2015）结果未出，暂按 01 分数计入，综合总分暂定 **93.3**。此为暂定排名——在 02 实测前，尚不能把「GLM-5.3 一定综合第一」当作定论。
+- **同模型不同 Harness 可差 38 分（反面证据）**：E（workbuddy auto × GLM-5.2）与 C 同用 GLM-5.2，01 项目却仅 **53.0**（vs C 的 91.0）——其核心 binning 直接取自 NCBI 既有 organism assignment 而非按论文方法独立复现，且 gene prediction 与代谢重建之间存在数据来源链断裂。同一模型在不同 Harness/运行模式下，科研可信度可出现断崖式差距。
 
 #### 细节报告入口
 
@@ -119,6 +129,8 @@ B  Claude Science × DeepSeek-V1-Flash
 |---|---|
 | 完整审稿式评测（评分依据、claim 级证据、方法学披露、排行榜） | [benchmarks/Review/260816 bench.txt](benchmarks/Review/260816%20bench.txt) |
 | Round 02 评测记录（结构化） | [evaluations/round-02-two-project-combined.md](evaluations/round-02-two-project-combined.md) |
+| Round 02 增补：workbuddy auto × GLM-5.2 评测记录（01） | [evaluations/round-02-workbuddy-auto-glm5.2.md](evaluations/round-02-workbuddy-auto-glm5.2.md) |
+| workbuddy auto × GLM-5.2 的 01 评审全文（GPT-5.6 审稿，53.0/100，Major Revision） | [benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md](benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md) |
 | 完整榜单与更新记录 | [docs/leaderboard.md](docs/leaderboard.md) |
 | Case 详情：Tyson 2004 | [benchmarks/tyson2004/](benchmarks/tyson2004/) |
 | Case 详情：1000 Genomes Phase 3（Auton 2015） | [benchmarks/humangenomics/](benchmarks/humangenomics/) |
