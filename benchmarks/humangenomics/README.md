@@ -10,7 +10,7 @@
 
 | 项 | 定义 |
 |---|---|
-| task prompt | 对 Auton et al. (2015) 1000 Genomes Phase 3 的人群遗传学核心论断做**独立计算复现**。输入：chr21 GRCh37 v5b VCF + 样本 panel。必须完成：① 验证样本结构（2,504 个体 / 26 人群 / 5 超级人群）；② 逐染色体变异计数（SNP / indel / singleton AC=1）并与论文 Supplementary Table 1 比对；③ 每基因组变异负担与 singleton 换算验证（Table 1）；④ chr21 PCA 并评估 5 超级人群聚类（ARI ≥ 0.9）；⑤ 两两超级人群 Fst（Weir & Cockerham）。输出 claim 级结果表、可重跑代码、环境锁定、执行日志。 |
+| task prompt | 对 Auton et al. (2015) 1000 Genomes Phase 3 的人群遗传学核心论断做独立计算复现。输入：chr21 GRCh37 v5b VCF + 样本 panel。必须完成：① 验证样本结构（2,504 个体 / 26 人群 / 5 超级人群）；② 逐染色体变异计数（SNP / indel / singleton AC=1）并与论文 Supplementary Table 1 比对；③ 每基因组变异负担与 singleton 换算验证（Table 1）；④ chr21 PCA 并评估 5 超级人群聚类（ARI ≥ 0.9）；⑤ 两两超级人群 Fst（Weir & Cockerham）。输出 claim 级结果表、可重跑代码、环境锁定、执行日志。不能参考本地其他目录，只能利用当前目录进行读/写，环境构建，分析，汇总等全部工作。全部完成后，使用Rmd文档，完整记录复现过程：文献获取情况，数据获取情况，复现步骤、方法、结果，与文章原文对照情况，最后的结论等。并渲染成html交付我查阅。 |
 | source paper | 1000 Genomes Project Consortium. *A global reference for human genetic variation*. Nature 526:68–74 (2015). DOI 10.1038/nature15393 |
 | permitted data sources | EBI FTP `release/20130502/` 或 AWS `s3://1000genomes` 的 chr21（可选 chr22）VCF 与 `integrated_call_samples_v3.20130502.ALL.panel`；**禁止**使用第三方汇总统计或现成 PCA/Fst 结果 |
 | permitted software | bcftools、plink2、scikit-allel、EIGENSOFT(smartpca)；Python/R 通用科学计算库；须锁定版本并记录 |
