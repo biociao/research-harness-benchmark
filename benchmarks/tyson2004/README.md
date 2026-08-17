@@ -8,7 +8,7 @@
 
 | 项 | 定义 |
 |---|---|
-| task prompt | 对 Tyson et al. (2004) 酸性矿山排水（AMD）微生物组/基因组重建进行独立计算复现：群落结构（主要 genome bins）、bin 验证（GC / composition / 16S）、核心代谢通路；SNP / recombination 等依赖原始 reads 的结论须单独评估数据可获得性。 |
+| task prompt | 本地复现这篇文章的分析过程和主要结论：Tyson, G.W. et al. (2004). Community structure and metabolism through reconstruction of microbial genomes from the environment. Nature 428, 37–43. DOI: 10.1038/nature02340 \| PubMed: 14961025。不能参考本地其他目录，只能利用当前目录进行读/写，环境构建，分析，汇总等全部工作。全部完成后，使用Rmd文档，完整记录复现过程：文献获取情况，数据获取情况，复现步骤、方法、结果，与文章原文对照情况，最后的结论等。并渲染成html交付我查阅。 |
 | source paper | Tyson et al. *Community structure and metabolism through reconstruction of microbial genomes from the environment*. Nature 428:37–43 (2004) |
 | permitted data sources | 原始 reads（SRA，若可获得）与论文补充材料；**禁止**使用现成 binning/组装结果 |
 | permitted software | 现代开源工具链（组装 / binning / 注释 / 比对）；版本锁定并记录 |
