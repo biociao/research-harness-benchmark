@@ -1,0 +1,370 @@
+
+=== SLIDE 1 | AI × BI × SCI ===
+  AI × BI × SCI
+  Claude Science
+  美学解构 × Harness 解构
+  BEYOND THE INTERFACE. INTO THE HARNESS.
+  [notes] 开场：今天不做功能教学，而是回答两个问题——Claude Science 为什么看起来像科研工具？这种视觉体验背后需要怎样的 Harness？
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 2 | OPENING QUESTION ===
+  OPENING QUESTION
+  为什么科研 Agent 开始强调“工作台感”？
+  02
+  聊天框
+  →
+  研究空间
+  问题不再是“回答像不像专家”
+  而是“过程能否被阅读、修改、追踪和复用”
+  美学
+是工作方式
+的外显
+  [notes] 让学员说出聊天产品和科研工作台在视觉预期上的差异。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 3 | COURSE MAP ===
+  COURSE MAP
+  这节课拆两层：看得见的界面，看不见的系统
+  03
+  01
+  美学解构
+  视觉语言
+  信息层级
+  科学图表
+  交互节奏
+  可信感设计
+  02
+  Harness 解构
+  协调 Agent
+  Skills / Tools
+  Compute
+  Artifacts
+  Reviewer / Provenance
+  界面让系统可被理解；Harness 让研究可被执行与审计
+  [notes] 说明课程结构约 40 分钟美学、30 分钟架构与对比、20 分钟拆解练习。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 4 | AESTHETIC THESIS ===
+  AESTHETIC THESIS
+  Claude Science 的美学核心不是“科技感”
+  04
+  不是
+  霓虹、粒子、未来感装饰
+  而是
+  让研究对象、操作与证据
+同时保持可见
+  1
+  RESEARCH OBJECT
+  数据、结构、文献
+  2
+  ACTION
+  自然语言驱动代码与工具
+  3
+  EVIDENCE
+  图、代码、环境与历史
+  [notes] 设计判断：科研产品的高级感来自信息关系清楚，而不是装饰复杂。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 5 | AESTHETICS · 01 ===
+  AESTHETICS · 01
+  视觉语言：冷静底色承载高密度科学对象
+  05
+  低噪声底色
+  减少装饰竞争
+  单一焦点色
+  状态与行动才着色
+  清晰分区
+  对话 / 画布 / 产物
+  专业对象原生呈现
+  结构、轨道、分子、图表
+  α
+  颜色负责语义，不负责热闹
+  [notes] 把海报的高饱和配色与 Claude Science 实际产品的克制工作台审美区分开：本套课件用海报色做章节编码，正文降低饱和面积。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 6 | AESTHETICS · 02 ===
+  AESTHETICS · 02
+  信息层级：研究对象永远高于聊天本身
+  06
+  对话
+  意图
+澄清
+修改
+  科学对象
+  FIGURE
+MANUSCRIPT
+STRUCTURE
+DATA
+  证据轨
+  代码
+  环境
+  历史
+  来源
+  控制面
+  主画布
+  审计面
+  [notes] 关键美学观点：聊天是控制面，不应吞掉研究对象。科学家的注意力应落在数据、图和手稿。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 7 | AESTHETICS · 03 ===
+  AESTHETICS · 03
+  图不是终点：Figure、Code、Environment 必须成套
+  07
+  1
+  FIGURE
+  看结果
+  2
+  CODE
+  看生成逻辑
+  3
+  ENV
+  看可重跑条件
+  4
+  HISTORY
+  看如何迭代
+  美学上的“完整”，应当等于证据上的“完整”
+  [notes] Anthropic 表述中，每个 figure 可附带生成它的代码、环境、解释和消息历史。这种绑定同时是交互设计与复现设计。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 8 | AESTHETICS · 04 ===
+  AESTHETICS · 04
+  交互美学：自然语言负责意图，代码负责精确
+  08
+  “把横轴改成对数”
+  自然语言修改
+  →
+  plot_xscale('log')
+  代码成为可检查的操作记录
+  好的交互不是隐藏复杂性
+  而是让复杂性在需要时可见
+  [notes] 强调可逆性：自然语言降低操作门槛，代码保留精确性；任何修改都应落到可检查 artifact。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 9 | AESTHETICS · 05 ===
+  AESTHETICS · 05
+  可信感不是一个绿色对勾，而是一条可追踪路径
+  09
+  结论
+  图表
+  生成代码
+  执行环境
+  输入数据
+  来源与历史
+  每多走回一步，可信度多一层
+  Reviewer Agent 可以提示问题，但不能替代独立验证
+  [notes] Reviewer agent 检查引用、不可追踪数字和图代码不一致；课堂上要指出自检仍不等于独立审稿。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 10 | PART II · SYSTEM ===
+  PART II · SYSTEM
+  界面之下，
+Harness 如何工作
+  从视觉秩序进入执行秩序：Agent、Skills、Compute、Artifacts、Reviewer。
+  10
+  [notes] 转场：如果上半场回答‘为什么这样设计’，下半场回答‘什么系统才能支撑这种体验’。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 11 | HARNESS · LAYERS ===
+  HARNESS · LAYERS
+  Claude Science 的核心，是协调而不是包办
+  11
+  COORDINATING AGENT
+  拆解目标 · 调度任务
+  SPECIALIST AGENTS / SKILLS
+  文献 · 组学 · 建模 · 写作
+  TOOLS / DATABASES
+  软件 · 数据源 · 模型
+  COMPUTE
+  本地 · SSH · HPC · 云算力
+  ARTIFACTS + REVIEWER
+  产物 · 审计 · 修正
+  [notes] Claude Science 使用 generalist coordinating agent，并可调用 specialist agents；同时提供 skills、connectors、compute 和 reviewer。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 12 | HARNESS · LOOP ===
+  HARNESS · LOOP
+  一次研究循环，需要同时推进结果与证据
+  12
+  PLAN
+  研究目标
+  EXECUTE
+  工具与算力
+  INSPECT
+  图与中间结果
+  REVIEW
+  引用与计算
+  REFINE
+  分叉或修改
+  PACKAGE
+  可复用 Skill
+  结果循环
+  让分析变好
+  证据循环
+  让结论可信
+  两条必须同步
+  [notes] 提示：很多 Agent 只优化结果循环；Research Harness 必须显式维护证据循环。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 13 | COMPARISON ===
+  COMPARISON
+  同类产品的差异，首先是产品中心不同
+  13
+  CLAUDE SCIENCE
+  BIOMNI
+  ROSALIND
+  本项目
+  产品中心
+  Workbench
+  Action space
+  Domain model + workspace
+  Evaluation harness
+  美学焦点
+  研究对象与产物
+  能力覆盖与执行轨迹
+  专业流程与领域对象
+  证据状态与评分
+  交互方式
+  持续会话 + 分叉
+  检索行动 + 动态规划
+  Skills + 引导式流程
+  固定任务 + 提交包
+  关键优势
+  连续、可视、可迭代
+  广覆盖、灵活组合
+  领域深度与治理
+  公平比较、可证伪
+  [notes] 比较的是设计哲学，不是完整功能清单。各产品仍在快速变化。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+- https://biomni.stanford.edu/paper.pdf
+- https://openai.com/index/introducing-gpt-rosalind/
+
+=== SLIDE 14 | COMPARISON · 01 ===
+  COMPARISON · 01
+  Claude Science 与 BioMni：空间优先 vs 行动优先
+  14
+  CLAUDE SCIENCE
+  把科研活动汇入一个连续空间
+  对象可视化
+  图代码联动
+  人可分叉与修改
+  Reviewer 随程检查
+  BIOMNI
+  把生物医学能力汇入行动空间
+  工具与数据库检索
+  动态规划
+  代码组合行动
+  跨任务泛化
+  前者问：科学家如何连续工作？
+  后者问：Agent 可以完成多少行动？
+  [notes] BioMni 论文描述 E1 行动环境与 A1 通用 Agent，通过 retrieval-augmented planning 和 code-based execution 动态组合任务。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+- https://biomni.stanford.edu/paper.pdf
+
+=== SLIDE 15 | COMPARISON · 02 ===
+  COMPARISON · 02
+  Claude Science 与 Rosalind：通用工作台 vs 深领域组合
+  15
+  CLAUDE SCIENCE
+  01
+  通用协调 Agent
+  02
+  科研对象原生呈现
+  03
+  本地 / SSH / HPC
+  04
+  Reviewer Agent
+  ROSALIND
+  01
+  领域模型增强
+  02
+  生命科学 Skills
+  03
+  专用 Workbench
+  04
+  企业治理边界
+  共同方向：模型不搬走大数据，而是进入工具与计算环境
+  [notes] OpenAI 将 GPT‑Rosalind、Life Sciences Research Plugin 与 Rosalind Workbench 区分为领域模型、编排层和工作空间。
+
+[Sources]
+- https://openai.com/index/introducing-gpt-rosalind/
+
+=== SLIDE 16 | CRITICAL REVIEW ===
+  CRITICAL REVIEW
+  值得借鉴，也值得保持警惕
+  16
+  值得借鉴
+  研究对象优先于聊天
+  图、代码、环境与历史绑定
+  分叉支持方法比较
+  Reviewer 进入工作流
+  需要警惕
+  自检不等于独立验证
+  界面完整不等于 Claim 成立
+  持续上下文可能隐藏方法漂移
+  可视化可信感可能超前于证据
+  设计的责任：让边界与不确定性同样显眼
+  [notes] 这是课程的批判性部分。避免把产品发布材料当作独立验证；区分官方能力主张与 benchmark 证据。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 17 | WORKSHOP ===
+  WORKSHOP
+  动手拆：一张界面图，画出两张结构图
+  17
+  A · 美学拆解
+  第一眼看哪里？
+  颜色分别表达什么？
+  研究对象是否居中？
+  哪些细节建立可信感？
+  B · Harness 拆解
+  谁在规划？
+  调用哪些 Skills / Tools？
+  Artifact 如何生成？
+  Reviewer 与 provenance 在哪？
+  输出：一张 Visible Layer 图 + 一张 System Layer 图
+  [notes] 20 分钟小组练习：任选一个科研工作台或 Agent，先只画可见界面，再推断其系统层；最后标出哪些是事实、哪些是推断。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 18 | TAKEAWAY ===
+  TAKEAWAY
+  看见界面，
+也看见系统。
+  好的科研美学让复杂工作可理解；好的 Harness 让研究过程可执行、可审计、可复现。
+  18
+  BEYOND THE INTERFACE. INTO THE HARNESS.
+  设计不是包装，是研究可信度的交互层。
+  [notes] 收束：审美不是与科研严谨对立。真正成熟的设计，会把证据、边界、不确定性和可复现性做成可见的产品行为。
+
+[Sources]
+- Internal course design and local project materials.

@@ -12,4 +12,8 @@
 
 | System | 答卷 | 状态 |
 |---|---|---|
-| — | — | ⏳ 待评测（R02） |
+| dsh-science × GLM-5.3-Flash | [dsh-glm-5.3-flash-reproduction-report.md](dsh-glm-5.3-flash-reproduction-report.md)（渲染版 [html](dsh-glm-5.3-flash-reproduction-report.html)；原始工程 `/Volumes/repo/ciao/Harness-bench/dsh-glm-5.3-flash/kgp-phase3-repro/`） | ✅ 已归档（2026-09-02）；答卷自评 9 claims：8 PASS + 1 PARTIAL + 0 FAIL；GPT-5.6-sol 双样本评审 **72.5/100**（Major Revision，E2，judge 口径 C01 reproduced / C03 partial / C02、C05 unverifiable / C04 not_reproduced）；综合 57.9 已入 [leaderboard R05 节](../../../docs/leaderboard.md) |
+
+> 注：R02/R03 各组合（A–F）的 1000G 答卷保留在各自工作区（`/Volumes/repo/ciao/Harness-bench/dsh-*`），未逐一复制到本目录；评审记录见 `evaluations/`。
+>
+> ⚠️ 答卷重要发现：论文 Supp Table 1 实为人群样本量表，**逐染色体变异计数表论文从未发布**（最细粒度为 Supp Table 3）——benchmarks/humangenomics/README.md 中「逐染色体计数与 Supp Table 1 比对」的锚点描述需在下一版 benchmark 修订时核实更正。

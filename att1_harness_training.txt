@@ -1,0 +1,424 @@
+
+=== SLIDE 1 | BIOCIAO LAB · TRAINING ===
+  BIOCIAO LAB · TRAINING
+  从论文到证据
+  RESEARCH
+HARNESS
+  科研复现全过程 · 90 MIN
+  读论文｜定 Claim｜跑 Pipeline｜查证据｜做审稿
+  [notes] 开场不要先解释术语。先提出问题：一份看起来专业的 AI 复现报告，我们凭什么相信它？建议用 1 分钟说明今天的目标。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 2 | OPENING QUESTION ===
+  OPENING QUESTION
+  看起来成功，不等于真的复现
+  02
+  A
+  漂亮的图和结论
+  没有输入来源｜没有日志｜没有逐项证据
+  B
+  一个 Claim 未复现
+  但数据、代码、指标与失败原因全部可查
+  哪一份更可信？
+  FAILURE IS EVIDENCE
+  可信的“未复现” ＞ 无证据的“成功复现”
+  [notes] 让学员举手投票。不要急着宣布答案；把判断标准留到证据链页面再闭环。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 3 | ARCHITECTURE ===
+  ARCHITECTURE
+  科研系统不是一个模型，而是一组层次
+  03
+  领域 / 通用模型
+  推理
+  ↓
+  Agent
+  规划与修正
+  ↓
+  Skills · Tools · DB
+  执行
+  ↓
+  Workbench
+  数据、算力、产物
+  ↓
+  Research Harness
+  约束与证据链
+  ↓
+  Evaluation Harness
+  比较与审计
+  不要把不同层级
+放在一起硬比较
+  产品通常横跨多层；
+Benchmark 负责把贡献拆开。
+  [notes] 用这张图纠正常见混淆：模型、Agent、工作台、Harness 和评测框架不是同义词。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 4 | ARCHITECTURE ===
+  ARCHITECTURE
+  四条路线，优化的是不同问题
+  04
+  CLAUDE
+SCIENCE
+  连续工作
+  Workbench
+  BIOMNI
+  行动广度
+  Action Space
+  GPT‑ROSALIND
++ WORKBENCH
+  领域深度
+  Model + Skills
+  本项目
+  可信比较
+  Evaluation Harness
+  工作台让研究连续｜行动空间让 Agent 能做｜领域模型让推理更深｜Benchmark 让结果可被相信
+  [notes] 本页只讲定位，不讲功能清单。强调它们不是简单的四个同类产品。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+- https://biomni.stanford.edu/paper.pdf
+- https://openai.com/index/introducing-gpt-rosalind/
+
+=== SLIDE 5 | CLAUDE SCIENCE ===
+  CLAUDE SCIENCE
+  Claude Science：让科研工作保持连续
+  05
+  WORKBENCH
+  协调 Agent + 专业 Agent
+  图、代码、环境与消息历史关联
+  本地、SSH 与 HPC 计算
+  Reviewer 检查引用和计算
+  文献
+  数据
+  计算
+  图表 · 稿件 · 可审计历史
+  人可以修改、分叉、继续
+  [notes] 提问：完整保存会话和代码，是否就足以证明论文 claim 成立？答案留给后续。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+
+=== SLIDE 6 | BIOMNI ===
+  BIOMNI
+  BioMni：先定义生物医学的行动空间
+  06
+  BIOMNI‑E1
+  150 专业工具
+  105 软件包
+  59 数据库
+  →
+  BIOMNI‑A1
+  1
+  检索相关行动
+  →
+  2
+  生成计划
+  →
+  3
+  用代码组合
+  →
+  4
+  反馈与修正
+  哲学：避免为每个任务写死流程，让通用 Agent 动态组合能力
+  [notes] 工具数量来自 BioMni 论文公开描述。强调行动空间越大，越需要输入边界、版本固定和审计。
+
+[Sources]
+- https://biomni.stanford.edu/paper.pdf
+
+=== SLIDE 7 | GPT‑ROSALIND · WORKBENCH ===
+  GPT‑ROSALIND · WORKBENCH
+  Rosalind：领域推理、模块化工具与治理
+  07
+  1
+  GPT‑ROSALIND
+  领域模型
+更深的生命科学推理
+  +
+  2
+  LIFE SCIENCES
+PLUGIN
+  编排层
+数据库 + 工具 + Skills
+  +
+  3
+  ROSALIND
+WORKBENCH
+  科研空间
+流程、查看器与数据
+  三者可组合，但不是同一个概念；Workbench 不要求必须使用 GPT‑Rosalind
+  [notes] 这是术语澄清页：GPT‑Rosalind 是模型，Life Sciences Research Plugin 是编排层，Rosalind Workbench 是科研工作空间。
+
+[Sources]
+- https://openai.com/index/introducing-gpt-rosalind/
+
+=== SLIDE 8 | DESIGN PHILOSOPHY ===
+  DESIGN PHILOSOPHY
+  比较架构，要先看它在优化什么
+  08
+  CLAUDE
+  BIOMNI
+  ROSALIND
+  BENCHMARK
+  首要目标
+  连续科研体验
+  广泛自主行动
+  深领域工作流
+  可信评价
+  架构中心
+  Workbench
+  Action space
+  Model + Skills
+  Protocol + Evidence
+  流程策略
+  交互、分叉
+  动态规划
+  引导与模块化
+  固定边界
+  主要风险
+  历史≠结论成立
+  自由度带来漂移
+  贡献层级混淆
+  标准化压缩开放性
+  [notes] 让学员注意：优势与风险来自各自优化目标，没有一个架构在所有维度天然胜出。
+
+[Sources]
+- https://www.anthropic.com/news/claude-science-ai-workbench
+- https://biomni.stanford.edu/paper.pdf
+- https://openai.com/index/introducing-gpt-rosalind/
+
+=== SLIDE 9 | HARNESS ELEMENTS ===
+  HARNESS ELEMENTS
+  Research Harness 把能力变成证据链
+  09
+  01
+  固定任务
+  论文 · 数据 · 预算
+  02
+  Claim-first
+  论断 → 指标 → 阈值
+  03
+  工具与环境
+  版本 · 参数 · 权限
+  04
+  过程记录
+  日志 · 错误 · 介入
+  05
+  证据管理
+  结果 → Artifact
+  06
+  评价审计
+  Rubric · Reviewer
+  [notes] 说明本项目重点不是规定一种 Agent 实现，而是规定可比较的任务边界和证据要求。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 10 | HANDS‑ON · ZEISEL 2015 ===
+  HANDS‑ON · ZEISEL 2015
+  现在，走完一次
+最小科研复现
+  3005 个单细胞｜11 MB 表达矩阵｜Claim-level reproduction
+  10
+  [notes] 进入实操。提醒学员：目标不是复刻整篇论文，而是完成一个可审查的 claim 闭环。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 11 | ZEISEL 2015 ===
+  ZEISEL 2015
+  先定 Claim，再打开工具
+  11
+  C01
+  细胞形成主要类群
+  计算对象
+  聚类 vs 标签
+  ARI / NMI
+  C02
+  Marker 识别类型
+  计算对象
+  Pax6 · Itpr2
+Slc17a7 · Gad1
+  AUROC / 方向
+  C03
+  CA1 与 S1 分层
+  计算对象
+  锥体神经元区域差异
+  分离度 / DE
+  [notes] 分组填写 claim card。强调 UMAP 像不像不是 C01 的充分验收标准；参考标签必须在聚类完成后才载入。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 12 | REPRODUCTION CONTRACT ===
+  REPRODUCTION CONTRACT
+  复现开始前，先签一份“研究契约”
+  12
+  输入：GSE60361 3005 细胞 UMI 矩阵
+  软件：Scanpy 或 Seurat；记录版本
+  资源：4 核 CPU｜8–16 GB
+  人工介入：≤1 次；必须记录
+  边界判断
+  可以支持
+  聚类、Marker、区域差异
+  不能声称
+  从原始 FASTQ 端到端复现
+  标签用途
+  仅用于事后评分，不作输入提示
+  [notes] 让学员回答：为什么用 11 MB 处理矩阵，而不是约 317 GB FASTQ？关键不是大小，而是它限定了可支持的 claim 范围。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 13 | EXECUTION ===
+  EXECUTION
+  最小 Pipeline：真实运行，但保留恢复点
+  13
+  1
+  校验
+输入
+  2
+  QC
+  3
+  标准化
+  4
+  PCA +
+聚类
+  5
+  载入
+标签
+  6
+  ARI/NMI
+Marker
+  7
+  写回
+Claim
+  R0 数据就绪
+  R1 QC / PCA
+  R2 完整参考产物
+  恢复不是作弊；不记录恢复才是问题
+  [notes] 课堂运行 16 分钟。若环境或计算超时，从最近恢复点继续，并把恢复行为写入 provenance。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 14 | EVIDENCE CHAIN ===
+  EVIDENCE CHAIN
+  每个结论都要能反向走回原始证据
+  14
+  论文
+CLAIM
+  可检验
+指标
+  合法
+输入
+  代码与
+环境
+  结果
+ARTIFACT
+  独立
+核验
+  带边界
+结论
+  反向审计
+  报告数字 → results 文件 → 运行日志 → 参数 → 输入版本 → 论文位置
+  任一环断裂，都要降低证据等级或缩小结论范围
+  [notes] 回扣开场投票：B 更可信，因为它允许审阅者反向追踪，而 A 的成功无法验证。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 15 | CLAIM RECORD ===
+  CLAIM RECORD
+  把“我觉得成功”改写成结构化判断
+  15
+  claim_id: C01
+
+agent_result:
+  9 clusters; ARI=…; NMI=…
+
+status: partially_reproduced
+
+evidence:
+  - results/cluster_metrics.csv
+
+confidence: medium
+  必须回答 5 件事
+  实际观察到什么？
+  与论文 Claim 什么关系？
+  哪个文件可以证明？
+  有哪些差异与不确定性？
+  Claim-level 还是 paper-level？
+  [notes] 让每组把至少一个运行结果写入 claim 记录。不要为了完成课堂任务而强行标 reproduced。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 16 | RED TEAM ===
+  RED TEAM
+  故障注入：专业外观可能掩盖完整性风险
+  16
+  01
+  标签在聚类前载入
+LABEL LEAKAGE
+  02
+  UMAP 相似但 ARI 低
+VISUAL ≠ METRIC
+  03
+  换了方法却没记录
+SILENT DRIFT
+  04
+  只做矩阵却声称 FASTQ 全流程
+SCOPE OVERCLAIM
+  找出 integrity flag → 定位受影响 Claim → 调低证据等级 → 给出修复方案
+  [notes] 每组抽取一个故障，讨论受影响 claim、证据等级、修复方案，以及修复前能否进入排行榜。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 17 | PEER REVIEW ===
+  PEER REVIEW
+  评分不是审美判断，而是五种证据的加权
+  17
+  D1
+  文献与获取
+  15%
+  D2
+  理解与推理
+  30%
+  D3
+  代码与规范
+  25%
+  D4
+  实验与可视化
+  20%
+  D5
+  过程与效率
+  10%
+  最可信
+证据
+  主要
+风险
+  补做的
+验证
+  [notes] 小组交换提交包，给出一个最可信证据、一个主要风险、一个补做验证，以及最终复现状态。
+
+[Sources]
+- Internal course design and local project materials.
+
+=== SLIDE 18 | TAKEAWAY ===
+  TAKEAWAY
+  能想 · 能找 · 能做
+更要能查 · 能交 · 能评
+  科研 Harness 的终点不是自动化，而是可信、可追踪、可证伪。
+  18
+  可信的“未复现” ＞ 无证据的“成功复现”
+  [notes] 用三句话结束：基本单位是 claim；核心价值是证据闭环；失败只要诚实、可追踪，就是科学证据。
+
+[Sources]
+- Internal course design and local project materials.

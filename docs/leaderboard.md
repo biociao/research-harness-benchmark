@@ -5,7 +5,16 @@
 >
 > **Harness 说明**：榜单中的 **dsh-science**（早期记录写作 DSH / dsh）是运行于 DeepSeek Harness 之上的科研场景插件，负责执行本仓库的评测任务；源码与文档见 <https://github.com/biociao/dsh-science>。R02 起统一使用 dsh-science 表述，历史轮次（R01）保留原始记录。
 
-## Round 03（最新）— 六系统双项目复评榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
+## Round 07（非排名）— 两份异构文档 GPT-5.6-sol 五维评测存档
+
+> **不入综合排行榜**：本轮被评的是**两类异构文档**（①一份复现报告、②一份评审文档），均非「01 Tyson + 02 Auton」双项目完整答卷，且①与②不是同类型对象、分值不可互比——与 R06（课件类交付物）处理一致，仅作逐份五维评测存档。评测方式：GPT-5.6-sol（codex CLI，`codex exec -s read-only`，与 R04–R06 同口径）逐份 0–10 制评分 ×10 折算。记录见 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](../evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
+
+| 文档 | 类型 | 加权总分 /100 | 审稿结论 | D1 | D2 | D3 | D4 | D5 | 关键判定 |
+|---|---:|---|---|---:|---:|---:|---:|---:|---|
+| ChatGPT-Rosalind-5.6Sol · `tyson2004_reproduction.html` | 复现报告 | **67.5** | Major Revision | 7 | 8 | 6 | 6 | 6 | 部分复现成功；SNP/重组/FISH/ORF/代谢仅原文复核 |
+| GPT-5.6 · `Review_E01_不建议判定为“论文复现成功”.md` | 评审文档 | **53.5** | Major Revision | 7 | 6 | 4 | 5 | 5 | 循环验证/来源链断裂/指标错配三处硬伤；被评稿自身 56 vs 53 口径矛盾，按整数分重算 53.5 |
+
+## Round 03 — 六系统双项目复评榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
 
 > R03 为外部评审对 12 份复现报告（6 组合 × 2 论文）的逐份审稿式复评：评审按 0–10 制打分，本榜 ×10 换算为 0–100 制；综合总分取评审给出的综合分（D/E 因勘误互换按两项目平均重算）。组合字母沿用 R02 编号（A–E 身份经报告内容核对沿用；**F 为新增组合（dsh-science × kimi k3，身份已补录）**）。**D 的 02 为本轮首次实测**，R02 的 93.3† 占位值由此关闭。**勘误（2026-08-17）**：评审原文将 D02 与 E02 标注互换（ARI 0.9106 / vcftools 逐位一致的报告实为 D02、ARI 0.872 的报告实为 E02），入库时已按正确归属调换：D02=92 / E02=86。评测记录：[evaluations/round-03-six-system-combined.md](../evaluations/round-03-six-system-combined.md)。
 
@@ -43,6 +52,44 @@
 | F | dsh-science | kimi k3 | 90 | 93 | 92 | 91 | 85 | **90** |
 | B | Claude Science | DeepSeek-V1-Flash | 87 | 89 | 88 | 86 | 80 | **86** |
 | E | workbuddy（auto） | GLM-5.2 | 82 | 90 | 89 | 88 | 80 | **86** |
+
+## Round 05（最新）— GLM-5.3-Flash 补测 case 02 并入综合榜（Auton 2015 / 1000 Genomes Phase 3）
+
+> **说明**：R05 补齐 R04 遗留的 case 02 缺口——dsh-science × **GLM-5.3-Flash** 以 headless 一次性任务完成 Auton 2015 / 1000 Genomes Phase 3（chr21）独立复现（**0 人工介入，2 h 34 min**），GPT-5.6-sol **双独立样本**评审（72.20 / 72.80，方差 0.6，verdict 均为 Major Revision，证据等级 E2），**官方采用 72.5**。本次评审输入为**答卷全文 + 完整代码 + 环境锁 + 执行证据**（全代码口径），D3 = 7.6（均值）显著高于 R04 的 4.5–6.0，证实 R04「D3 受截断影响」的判断。评审记录见 [evaluations/round-05-glm-5.3-flash-case02.md](../evaluations/round-05-glm-5.3-flash-case02.md)，评审全文见 [evaluations/gpt5.6-review-glm5.3flash-case02.md](../evaluations/gpt5.6-review-glm5.3flash-case02.md)。
+
+| GLM-5.3-Flash 双项目 | 加权总分 /100 | 审稿结论 | 证据等级 | D1 | D2 | D3 | D4 | D5 | 关键判定 |
+|---|---:|---|---|---:|---:|---:|---:|---:|---|
+| 01 Tyson 2004（R04 评） | **43.25⚠️** | Major Revision | E1 | 6.0 | 4.0 | 4.5 | 4.0 | 3.0 | 参照 bins 判输入违规 |
+| 02 Auton 2015 / 1000G（R05 评，双样本均值） | **72.5** | Major Revision | E2 | 8.4 | 6.5 | 7.6 | 6.7 | 8.0 | C01 reproduced；C03 partial；C02/C05 unverifiable（Supp Table 1 勘误成立但替代判据不等价）；C04 not_reproduced（ARI 0.8742<0.9） |
+| **综合总分 =（43.25 + 72.5）/ 2** | **57.9** | — | — | — | — | — | — | — | GPT-5.6-sol 口径 |
+
+### 综合排行榜（R05 更新，7 系统）
+
+| Rank | Harness | LLM | 01 项目分 | 02 项目分 | **综合总分 /100** | 评审口径 |
+|---:|---|---|---:|---:|---:|---|
+| 🥇 1 | dsh-science | GLM-5.2 | 94 | 92 | **93** | R03 评审 |
+| 🥈 2 | dsh-science | GLM-5.3 | 93 | 92 | **92.5** | R03 评审 |
+| 🥉 3 | dsh-science | DeepSeek-V1-Flash | 91 | 91 | **91** | R03 评审 |
+| 4 | dsh-science | kimi k3 | 83 | 90 | **87** | R03 评审 |
+| 5 | Claude Science | DeepSeek-V1-Flash | 82 | 86 | **84** | R03 评审 |
+| 6 | workbuddy（auto 模式） | GLM-5.2 | 77 | 86 | **81.5⚠️** | R03 评审 |
+| 7⚠️ | dsh-science | **GLM-5.3-Flash** | 43.25 | 72.5 | **57.9⚠️** | **GPT-5.6-sol（01=R04 单样本；02=R05 双样本均值）** |
+
+**⚠️ 口径警告（必读）**：GLM-5.3-Flash 是目前**唯一**被 GPT-5.6-sol 完整评审双项目的系统，其 57.9 与 R03 六组合的分数**出自不同评审口径，不可直接同台比较**——R03 评审未核查参照 bins 独立性等问题（同家族 dsh-science×GLM-5.3 的 Tyson 得 93，而 GPT-5.6-sol 对方法类似的 GLM-5.3-Flash Tyson 判 43.25，分差 ~50，见 R04 一致性警告）。R05 的 72.5 为全代码口径双样本均值，已是更严格的评审基线；**严格的同台排名需以 GPT-5.6-sol 全代码口径复评 R03 六组合**（后续工作）。本榜按分值排序仅供展示，名次解读须结合口径列。
+
+## Round 04 — GLM-5.3-Flash 三篇复现 GPT-5.6 评测（01 Tyson 部分；case 02 已于 R05 补测）
+
+> **说明**：R04 为单系统（dsh-science × **GLM-5.3-Flash**）× 3 篇独立复现报告（**Tyson 2004 / Love 2014 DESeq2 / Zeisel 2015**）的 GPT-5.6-sol 审稿式评分。GLM-5.3-Flash 当时**未完成** Auton 2015 / 1000 Genomes Phase 3（=R03 的 case 02），故 R04 无法按「01 Tyson + 02 Auton」口径并入综合排行榜——**该缺口已于 R05 补齐（02 = 72.5，见上），并入完成**。
+>
+> **评测方式**：GPT-5.6-sol（codex CLI，`codex exec -s read-only`）逐份五维 0–10 制评分，加权折算 0–100；评审输入为**报告叙述 + 交付物清单**（代码/日志内联被概括省略，judge 据此压低 D3——R05 全代码口径下 D3 回升到 7.6，印证该影响）。评审记录见 [evaluations/round-04-glm-5.3-flash.md](../evaluations/round-04-glm-5.3-flash.md)。
+
+| GLM-5.3-Flash 复现报告 | 加权总分 /100 | 审稿结论 | 推荐评级 | D1 | D2 | D3 | D4 | D5 | 关键 integrity flag |
+|---|---:|---|---|---:|---:|---:|---:|---:|---|
+| **Tyson 2004** | **43.25⚠️** | Major Revision | Weak | 6.0 | 4.0 | 4.5 | 4.0 | 3.0 | `prohibited_reference_use`（参照 bins 支撑结论） |
+| **Love 2014 (DESeq2)** | **52.0⚠️** | Major Revision | Developing | 6.0 | 5.0 | 6.0 | 5.0 | 3.0 | `claim_substitution`（统计核心命题被替换） |
+| **Zeisel 2015** | **51.5⚠️** | Major Revision | Developing | 6.0 | 4.5 | 6.0 | 5.0 | 4.0 | `evaluation_label_leakage`（评分标签参与选分辨率） |
+
+**⚠️ 一致性警告**：R03 中 dsh-science×GLM-5.3 的 Tyson 得 **93**，而该报告同样引用 NCBI 参照 bins；GPT-5.6-sol 却把 GLM-5.3-Flash 的"参照 bins 支撑结论"判为**输入违规**并压到 43（分差 ~50）。需人工复核判定是否一致（可能是 judge 更严，也可能 GLM-5.3-Flash 更依赖参照）。另 Love 两次采样 55.8 / 52.0，评审方差已显现，建议第二评审。
 
 ## Round 02 — 双项目综合榜（Tyson2004-v1 + Auton2015 / 1000 Genomes Phase 3）
 
@@ -125,6 +172,9 @@
 
 ## 更新记录
 
+- **R07（2026-09-02）**：两份**异构文档**的 GPT-5.6-sol 五维评测（**不入综合排行榜**）——① ChatGPT-Rosalind-5.6Sol 的 `tyson2004_reproduction.html`（Tyson 2004 复现报告）**67.5**（Major Revision；部分复现成功，D2=8 逻辑严密，但 SNP/重组/FISH/ORF/代谢仅原文复核、工程复现与证据定位不足）；② GPT-5.6 对 workbuddy E01 的评审稿 `Review_E01_不建议判定为“论文复现成功”.md` **53.5**（Major Revision；抓住循环验证/来源链断裂/指标错配三处硬伤，但被评稿自身 56 vs 53 口径矛盾、按整数分重算 53.5）。①为复现报告、②为评审文档，非同类型对象，分值不可互比。记录见 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](../evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
+- **R05（2026-09-02）**：GLM-5.3-Flash 补测 case 02（Auton 2015 / 1000 Genomes Phase 3）并以 **GPT-5.6-sol 双样本评审（72.20 / 72.80 → 官方 72.5）**，综合分 **（43.25 + 72.5）/ 2 = 57.9** 正式并入综合榜（第 7 位，带口径警告——其分数为 GPT-5.6-sol 全代码口径，与 R03 六组合的评审口径不可直接互比）。复现本身：headless 一次性任务、0 人工介入、2 h 34 min；9 claims 自评 8 PASS + 1 PARTIAL，judge 严格口径为 C01 reproduced / C03 partial / C02、C05 unverifiable（Supp Table 1 逐染色体计数表确实不存在——对 benchmark 的引用勘误发现）/ C04 not_reproduced（ARI 0.8742<0.9，no-AMR 4 群 0.9898）。记录见 [evaluations/round-05-glm-5.3-flash-case02.md](../evaluations/round-05-glm-5.3-flash-case02.md)。
+- **R04（2026-09-02）**：GLM-5.3-Flash（dsh-science × GLM-5.3-Flash）单系统 × 3 篇复现报告的 GPT-5.6-sol 审稿式评测——**Tyson 2004 = 43.25⚠️ / Love 2014 (DESeq2) = 52.0⚠️ / Zeisel 2015 = 51.5⚠️**，均 Major Revision。因缺 Auton/1000G（case 02）**不入综合排名**；judge 对"参照 bins 支撑结论"判定为输入违规（Tyson 由此从同侪的 93 骤降至 43），与 R03 dsh-science×GLM-5.3（也用 NCBI 参照 bins，得 93）不一致，需人工复核；Love 两次采样 55.8/52.0 显示评审方差，建议第二评审。评审记录见 [evaluations/round-04-glm-5.3-flash.md](../evaluations/round-04-glm-5.3-flash.md)，三份评审全文见 `evaluations/gpt5.6-review-glm5.3flash-*.md`。（**R05 后续**：case 02 已补测并入综合榜，见 R05 条目。）
 - **R03（最新，2026-08-17）**：六系统双项目复评入榜——外部评审 12 份报告（A–F × 2 论文，0–10 制 ×10 换算；**入库时勘误：评审原文 D02/E02 标注互换，已按正确归属调换**，D02=92 / E02=86）：**C·dsh-science×GLM-5.2 综合 93 第一**，D·dsh-science×GLM-5.3 **92.5** 第二（02 首次实测 92，R02 的 93.3† 占位关闭），A **91** 第三，新增组合 F（dsh-science × kimi k3）**87** 第四，B **84** 第五，E·workbuddy **81.5⚠️** 第六（E01 与 R02 GPT-5.6 审稿的 53.0 Major Revision 结论冲突，同一提交两轮分差 24 分，待第三方裁决）。评审全文见 [evaluations/round-03-A-F.md](../evaluations/round-03-A-F.md)（顶部附勘误说明），评测记录见 [evaluations/round-03-six-system-combined.md](../evaluations/round-03-six-system-combined.md)。
 - **R02 增补（2026-08-16）**：收录 workbuddy（auto 模式）× GLM-5.2 的 01（Tyson 2004）评审——GPT-5.6 审稿，五维加权 **53.0 / 100**，结论 Major Revision / 复现未成立，暂列综合榜第 5（02 未测）。评审全文见 [benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md](../benchmarks/Review/260816-review-workbuddy-auto-glm5.2-E01.md)，评测记录见 [evaluations/round-02-workbuddy-auto-glm5.2.md](../evaluations/round-02-workbuddy-auto-glm5.2.md)。
 - **R02（最新）**：双项目综合评测（Tyson2004-v1 + Auton2015），评分口径固定为 0–100 制五维加权；D·dsh-science×GLM-5.3 **93.3†** 暂列综合第一（02 未出、暂按 01 计入，待实测更新），C·dsh-science×GLM-5.2 **91.8** 第二，A·dsh-science×DeepSeek-V1-Flash **90.8** 第三，B·Claude Science **85.8** 第四。完整审稿记录见 [benchmarks/Review/260816 bench.txt](../benchmarks/Review/260816%20bench.txt)，评测记录见 [evaluations/round-02-two-project-combined.md](../evaluations/round-02-two-project-combined.md)。

@@ -41,7 +41,7 @@
 > **组合编号沿用 R02**：A–E 身份经报告内容核对沿用；**F 为新增组合（dsh-science × kimi k3，身份已补录）**。**D 的 02（Auton 2015）在本轮首次实测**——R02 的 93.3† 暂定值由此关闭。
 > **勘误（2026-08-17）**：评审原文将 D02 与 E02 标注互换（ARI 0.9106 / vcftools 逐位一致的报告实为 D02、ARI 0.872 的报告实为 E02），入库时已按正确归属调换：D02=92 / E02=86，D/E 综合分随之重算（92.5 / 81.5）。
 
-#### 正式综合排行榜（R03）
+#### 正式综合排行榜（R03 六组合 + R05 并入的 GLM-5.3-Flash）
 
 | Rank | 组合 | Harness | LLM | 总分 /100 | 项目分 | 综合评价 |
 |---|---|---|---|---:|---|---|
@@ -51,13 +51,16 @@
 | 4 | **F** | dsh-science | kimi k3 | **87** | 01 **83** / 02 **90** | **逻辑严谨、复现意识强**：未获全文 / canu→miniasm 等边界如实披露；显式环境锁定、自实现 WC84 Fst、下载截断校验重试；4/5 claim 支持 |
 | 5 | **B** | Claude Science | DeepSeek-V1-Flash | **84** | 01 **82** / 02 **86** | 研究判断不错，但工程化明显落后 |
 | 6 | **E** | workbuddy（auto） | GLM-5.2 | **81.5**⚠️ | 01 **77** / 02 **86** | 01 报告"仪表盘化"、深度不足；02 好于 01（C4 ARI 0.872 未达 0.9 阈值但如实报告）；⚠️ 与 R02 评审结论冲突，名次暂定（见下） |
+| 7⚠️ | **GLM-5.3-Flash** | dsh-science | GLM-5.3-Flash | **57.9**⚠️ | 01 **43.25** / 02 **72.5** | **GPT-5.6-sol 口径**（01=R04 单样本、02=R05 双样本均值），与 R03 评审口径不可直接互比：Supp Table 1 勘误发现 + Fst 双实现逐位一致 + 全代码 D3 7.6 为真亮点；01 参照 bins 违规与 claim 判据替换为主要失分 |
+
+> ⚠️ **口径警告**：第 7 行 GLM-5.3-Flash 的两个项目分均出自 GPT-5.6-sol 评审（R04/R05），R03 六组合出自 R03 外部评审——R03 口径明显更宽（参照 bins 等问题未扣分：同家族 dsh-science×GLM-5.3 的 Tyson 93 vs GPT-5.6-sol 对方法类似的 GLM-5.3-Flash 判 43.25）。分值排序仅供展示，严格同台需以 GPT-5.6-sol 全代码口径复评 R03 六组合。
 
 **⚠️ E01 评审冲突**：R03 评审给出 E01 = 77，其关键数值（2,731 scaffolds / 16.5 Mb / 5 bins / 18,214 genes）与 R02 收录的 workbuddy 同一提交完全一致；而 R02 的 GPT-5.6 审稿判定该提交 **53.0 / Major Revision（复现未成立）**（binning 直接采用 NCBI 既有 assignment、数据来源链断裂）。R03 评审未涉及上述问题，两轮对同一提交结论冲突（分差 24 分），E 的分数与名次待第三方评审 / clean-room 核验裁决；本榜暂按 R03 评审收录，R02 结论保留在案。
 
 #### 总分天梯图
 
 ```text
-科研 Harness Leaderboard（R03 · 综合总分 /100）
+科研 Harness Leaderboard（R03 六组合 + R05 并入 GLM-5.3-Flash · 综合总分 /100）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 C  dsh-science × GLM-5.2
@@ -83,6 +86,11 @@ B  Claude Science × DeepSeek-V1-Flash
 E  workbuddy（auto）× GLM-5.2
 ██████████████████████████████  81.5⚠️
         ↑ ⚠️ 与 R02 Major Revision 结论冲突，名次暂定
+
+G  dsh-science × GLM-5.3-Flash
+████████████████████████  57.9⚠️
+        ↑ ⚠️ GPT-5.6-sol 口径（01 43.25 / 02 72.5），与 R03 评审口径不可直接互比；Supp Table 1
+          勘误发现 + Fst 双实现逐位一致为亮点，01 参照 bins 违规与判据替换为主要失分
 
   50        60        70        80        90        100
 ```
@@ -126,12 +134,26 @@ E  workbuddy（auto）× GLM-5.2
 |---|---|
 | R03 评审全文（12 份报告逐一评分、横向发现与推荐梯队） | [evaluations/round-03-A-F.md](evaluations/round-03-A-F.md) |
 | Round 03 评测记录（结构化、含组合身份核对与跨轮次核对） | [evaluations/round-03-six-system-combined.md](evaluations/round-03-six-system-combined.md) |
+| Round 05 评测记录（GLM-5.3-Flash case 02 补测 + 评审 + 并入综合榜） | [evaluations/round-05-glm-5.3-flash-case02.md](evaluations/round-05-glm-5.3-flash-case02.md) |
+| Round 05 评审全文（GPT-5.6-sol 双样本） | [evaluations/gpt5.6-review-glm5.3flash-case02.md](evaluations/gpt5.6-review-glm5.3flash-case02.md) |
 | 完整榜单与更新记录 | [docs/leaderboard.md](docs/leaderboard.md) |
 | Case 详情：Tyson 2004 | [benchmarks/tyson2004/](benchmarks/tyson2004/) |
 | Case 详情：1000 Genomes Phase 3（Auton 2015） | [benchmarks/humangenomics/](benchmarks/humangenomics/) |
 | dsh-science 插件（执行评测的 Harness 插件） | <https://github.com/biociao/dsh-science> |
 
 > **欢迎参与评测**：欢迎用你的 LLM（Claude、GPT 等）× Harness 工具复现上述题目，将报告提交到本仓库，一起参与评测比较，提供更全面的参考。
+
+### Round 05（最新）— GLM-5.3-Flash 补测 case 02 并入综合榜
+
+> **R04 缺口已关闭**：dsh-science × GLM-5.3-Flash 以 headless 一次性任务补做 **Auton 2015 / 1000 Genomes Phase 3（chr21）**独立复现——**0 人工介入、2 h 34 min**、7 工件 97 文件 SHA-256 全部校验通过。GPT-5.6-sol **双独立样本**评审：**72.20 / 72.80（方差 0.6）→ 官方采用 72.5**（Major Revision，证据等级 E2；本次为全代码口径，D3 回升至 7.6，证实 R04「D3 受截断影响」判断）。
+>
+> **judge 严格口径 vs 答卷自评**：答卷自评 9 claims = 8 PASS + 1 PARTIAL；judge 判 C01 reproduced / C03 partially_reproduced / **C02、C05 unverifiable**（答卷发现的「论文逐染色体计数表从未发布」勘误成立，但替代判据不等价于原 ±1 与 tolerance-band 对照）/ **C04 not_reproduced**（PCA ARI 0.8742 < 0.9；排除混合人群 AMR 后 4 群 ARI 0.9898 属诊断性证据）。无伪造迹象；主要问题是判据替换后过度报 PASS。
+>
+> **综合总分 =（01 Tyson 43.25 + 02 Auton 72.5）/ 2 = 57.9**，正式并入综合榜第 7 位（⚠️ 其两项目分均出自 GPT-5.6-sol，与 R03 六组合的评审口径不可直接互比，详见 [docs/leaderboard.md](docs/leaderboard.md) R05 节）。评测记录见 [evaluations/round-05-glm-5.3-flash-case02.md](evaluations/round-05-glm-5.3-flash-case02.md)，评审全文见 [evaluations/gpt5.6-review-glm5.3flash-case02.md](evaluations/gpt5.6-review-glm5.3flash-case02.md)。
+
+### Round 04 — GLM-5.3-Flash × 3 篇复现（01 Tyson 部分；case 02 已于 R05 补测）
+
+> 当时因缺 case 02 未入综合排名（**已于 R05 补测并入**）。GPT-5.6-sol 审稿式评分：**Tyson 2004 = 43.25⚠️ / Love 2014 (DESeq2) = 52.0⚠️ / Zeisel 2015 = 51.5⚠️**，均 Major Revision。关键发现：judge 将 Tyson「用 NCBI 参照 bins 支撑结论」判为输入违规，与 R03 的 dsh-science×GLM-5.3（Tyson 93，同样引用参照 bins）不一致，需人工复核；Love 两次采样 55.8/52.0 显示评审方差。评测记录见 [evaluations/round-04-glm-5.3-flash.md](evaluations/round-04-glm-5.3-flash.md)。
 
 ### Round 02 — 双项目综合评测（历史）
 
