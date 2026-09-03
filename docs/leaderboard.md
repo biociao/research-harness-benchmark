@@ -5,6 +5,28 @@
 >
 > **Harness 说明**：榜单中的 **dsh-science**（早期记录写作 DSH / dsh）是运行于 DeepSeek Harness 之上的科研场景插件，负责执行本仓库的评测任务；源码与文档见 <https://github.com/biociao/dsh-science>。R02 起统一使用 dsh-science 表述，历史轮次（R01）保留原始记录。
 
+## 统一排行榜（总览）
+
+> 口径与 README「统一排行榜」一致：五维加权 0–100 制；**综合总分**=已成「01 Tyson + 02 Auton」双项目的项目分平均；**单论文分**=仅评 01 Tyson 的独立复现报告。各主体同列一张榜，用「评审口径」列区分（R03 外部评审 / GPT-5.6-sol）。
+> ⚠️ **口径须知**：同主体不同评审/轮次分数**不可直接互比**（R03 外部评审明显更宽松：同家族 dsh-science×GLM-5.3 的 Tyson 93 vs GPT-5.6-sol 对方法类似的 GLM-5.3-Flash 判 43.25）。名次解读须结合「评审口径」列；严格同台需以 GPT-5.6-sol 全代码口径复评 R03 六组合。
+
+| Rank | 主体 | Harness / 实现 | LLM | 总分 /100 | 01 分 | 02 分 | 评审口径 | 综合评价 |
+|:--:|---|---|---|:--:|:--:|:--:|---|---|
+| 🥇 1 | **C** · dsh-science | dsh-science | GLM-5.2 | **93** | 94 | 92 | R03 外部评审 | 最均衡，科研复现工程化最高：provenance 链、oracle 式交叉验证（Fst 与 vcftools 逐位一致 0.02388 / n=7,335）、环境锁定 |
+| 🥈 2 | **D** · dsh-science | dsh-science | GLM-5.3 | **92.5** | 93 | 92 | R03 外部评审 | 双项目都强：Tyson（H1–H4→E01–E04、nif 归属修正）+ 1000G claim-level 全 PASS（ARI 0.9106） |
+| 🥉 3 | **A** · dsh-science | dsh-science | DeepSeek-V1-Flash | **91** | 91 | 91 | R03 外部评审 | 科学推理强：发现 GenBank 沉积组装不一致并独立重组装；方法学差异披露充分 |
+| 4 | **F** · dsh-science | dsh-science | kimi k3 | **87** | 83 | 90 | R03 外部评审 | 逻辑严谨：边界如实披露、环境锁定、自实现 WC84 Fst；4/5 claim 支持 |
+| 5 | **B** · Claude Science | Claude Science | DeepSeek-V1-Flash | **84** | 82 | 86 | R03 外部评审 | 研究判断不错，工程化明显落后 |
+| 6 | **E** · workbuddy（auto） | workbuddy（auto 模式） | GLM-5.2 | **81.5**⚠️ | 77 | 86 | R03 外部评审 | 01 深度不足；⚠️ 与 R02 评审结论冲突，名次待核验 |
+| — | **ChatGPT-Rosalind-5.6Sol** | ChatGPT-Rosalind-5.6Sol | — | **67.5** | **67.5** | — | GPT-5.6-sol（01 单论文） | 部分复现成功；D2=8 把握证据边界、深至 2004 contig 批次；SNP/重组/FISH/ORF/代谢仅原文复核 |
+| 7⚠️ | **GLM-5.3-Flash** · dsh-science | dsh-science | GLM-5.3-Flash | **57.9**⚠️ | 43.25 | 72.5 | GPT-5.6-sol（R04/R05） | 唯一被完整评审双项目；Supp Table 1 勘误 + Fst 双实现一致为亮点；01 参照 bins 违规、判据替换失分 |
+| — | **phylo-biomni-standard** | Biomni 标准 | — | **52.5** | **52.5** | — | GPT-5.6-sol（01 单论文） | 真实端到端复现尝试（原始 Sanger reads 起算），但 7 图全 broken 致 D4=3，单一 nifH 命中过度升为机制结论 |
+| — | **dcsCloud** | DCS Cloud / Genpilot | — | **41.5** | **41.5** | — | GPT-5.6-sol（01 单论文） | 非端到端（成品基因组再分析）；碳固定未检出与论文不符、nif 归因偷换 |
+
+> 📌 综合总分（双项目）与单论文分（仅 Tyson）**非同量纲**——后四行仅作 01 维度补充参考，不计入「综合排名」，但全部列出便于对照。**E 评审冲突**：R03 给 E01=77、R02 的 GPT-5.6 审稿判 53.0/Major Revision（复现未成立），同一提交分差 24 分，名次待第三方/clean-room 核验。
+> **分项目（01｜Tyson 2004 / 02｜Auton 2015）** 同理整合，见 README「统一排行榜」分项目节。
+
+---
 ## Round 07 & Round 08 — 01 Tyson 2004 复现报告 GPT-5.6-sol 评测排名（单论文榜）
 
 > **口径**：这三份**都是 01 Tyson 2004 复现报告**，全部由 **GPT-5.6-sol**（codex CLI，与 R04/R05 同判读口径）逐份五维 0–10 制评分 ×10 折算——**同评审者、同框架、同对象，分值直接可比**，故纳入「01 Tyson 2004」**单论文排名**。它们**不是「01 Tyson + 02 Auton」双项目完整答卷**，因此**不计综合排行榜总分**（综合榜需 01+02 两项目），但在 01 单论文维度上给名次。评测记录见 [evaluations/round-08-biomni-dcscloud.md](../evaluations/round-08-biomni-dcscloud.md) 与 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](../evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
