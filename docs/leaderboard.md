@@ -5,6 +5,17 @@
 >
 > **Harness 说明**：榜单中的 **dsh-science**（早期记录写作 DSH / dsh）是运行于 DeepSeek Harness 之上的科研场景插件，负责执行本仓库的评测任务；源码与文档见 <https://github.com/biociao/dsh-science>。R02 起统一使用 dsh-science 表述，历史轮次（R01）保留原始记录。
 
+## Round 08（非排名）— 两份 Tyson 2004 AMD 复现报告 GPT-5.6-sol 五维评测存档
+
+> **不入综合排行榜**：本轮被评的是两份 **Tyson 2004 单论文复现报告**（①Biomni 标准、②DCS Cloud/Genpilot），均**不是「01 Tyson + 02 Auton」双项目完整答卷**，故与 R06/R07 处理一致、仅作逐份五维评测存档。**①为端到端复现尝试（原始 Sanger reads 起算）、②为成品基因组再分析（基于已发布重构基因组）**，两者研究深度不对等，分值解读需结合此差异；①与②同类型、可互为基准，且与 R07 同为 **GPT-5.6-sol** 口径（可比）。评测方式：GPT-5.6-sol（codex CLI，与 R04–R07 同判读口径）逐份 0–10 制评分 ×10 折算。记录见 [evaluations/round-08-biomni-dcscloud.md](../evaluations/round-08-biomni-dcscloud.md)。
+
+| 文档 | 类型 | 加权总分 /100 | 审稿结论 | D1 | D2 | D3 | D4 | D5 | 关键判定 |
+|---|---|---|---:|---|---|---:|---:|---:|---:|---|
+| phylo-biomni-standard · `tyson2004_reproduction.html` | 复现报告 | **52.5** | Major Revision | 8 | 5 | 5 | 3 | 7 | 真实端到端复现尝试但部分复现；**7 图全 broken**；单一 nifH 命中过度升为机制结论 |
+| dcsCloud · `Tyson2004_Reproduction.html` | 复现报告 | **41.5** | Major Revision | 5 | 3 | 4 | 5 | 5 | **非端到端复现**（成品基因组再分析）；碳固定"未检出"与论文不符；nif 归因偷换；e-value 误当复现显著 |
+
+> **⚠️ 对比提醒**：R07-①（Rosalind，67.5）与 R08-②（dcsCloud，41.5）同为"成品/半成品复现报告"类，但 Rosalind 深至 2004 contig 批次与 SNP 方法学判断（D2=8），dcsCloud 仅两基因组再注释（D2=3）；R08-①（Biomni，52.5）是三者中**唯一真正从原始 reads 起算的端到端尝试**（D1=8/D5=7 最高），却因图全部缺失被砍到 D4=3。三者均为**单论文复现、非双项目答卷，不入综合榜**。
+
 ## Round 07（非排名）— 两份异构文档 GPT-5.6-sol 五维评测存档
 
 > **不入综合排行榜**：本轮被评的是**两类异构文档**（①一份复现报告、②一份评审文档），均非「01 Tyson + 02 Auton」双项目完整答卷，且①与②不是同类型对象、分值不可互比——与 R06（课件类交付物）处理一致，仅作逐份五维评测存档。评测方式：GPT-5.6-sol（codex CLI，`codex exec -s read-only`，与 R04–R06 同口径）逐份 0–10 制评分 ×10 折算。记录见 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](../evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
@@ -172,6 +183,7 @@
 
 ## 更新记录
 
+- **R08（2026-09-03）**：两份 **Tyson 2004 AMD 复现报告**的 GPT-5.6-sol 五维评测（**不入综合排行榜**）——① phylo-biomni-standard 的 `tyson2004_reproduction.html`（Biomni 标准，**真实端到端复现**：原始 Sanger reads → 重组装 → 分箱 → 注释 → SNP）**52.5**（Major Revision；D1=8/D5=7 最高，但 **7 张图全部 broken** 致 D4=3，且单一 nifH 命中被过度升为"可能改写固氮分工"，bin 大小/ORF 明显偏小却未标"未复现"）；② dcsCloud 的 `Tyson2004_Reproduction.html`（DCS Cloud/Genpilot）**41.5**（Major Revision；**非端到端复现**，基于论文已发布重构基因组再注释，碳固定"未检出"与论文不符、nif 归因偷换、图 5.1 同轴/5.3 论文数据重绘当复现、e-value 误当"复现成功的统计显著"）。①为端到端尝试、②为成品再分析，两者深度不对等；均非双项目答卷，不入综合榜。记录见 [evaluations/round-08-biomni-dcscloud.md](../evaluations/round-08-biomni-dcscloud.md)。
 - **R07（2026-09-02）**：两份**异构文档**的 GPT-5.6-sol 五维评测（**不入综合排行榜**）——① ChatGPT-Rosalind-5.6Sol 的 `tyson2004_reproduction.html`（Tyson 2004 复现报告）**67.5**（Major Revision；部分复现成功，D2=8 逻辑严密，但 SNP/重组/FISH/ORF/代谢仅原文复核、工程复现与证据定位不足）；② GPT-5.6 对 workbuddy E01 的评审稿 `Review_E01_不建议判定为“论文复现成功”.md` **53.5**（Major Revision；抓住循环验证/来源链断裂/指标错配三处硬伤，但被评稿自身 56 vs 53 口径矛盾、按整数分重算 53.5）。①为复现报告、②为评审文档，非同类型对象，分值不可互比。记录见 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](../evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
 - **R05（2026-09-02）**：GLM-5.3-Flash 补测 case 02（Auton 2015 / 1000 Genomes Phase 3）并以 **GPT-5.6-sol 双样本评审（72.20 / 72.80 → 官方 72.5）**，综合分 **（43.25 + 72.5）/ 2 = 57.9** 正式并入综合榜（第 7 位，带口径警告——其分数为 GPT-5.6-sol 全代码口径，与 R03 六组合的评审口径不可直接互比）。复现本身：headless 一次性任务、0 人工介入、2 h 34 min；9 claims 自评 8 PASS + 1 PARTIAL，judge 严格口径为 C01 reproduced / C03 partial / C02、C05 unverifiable（Supp Table 1 逐染色体计数表确实不存在——对 benchmark 的引用勘误发现）/ C04 not_reproduced（ARI 0.8742<0.9，no-AMR 4 群 0.9898）。记录见 [evaluations/round-05-glm-5.3-flash-case02.md](../evaluations/round-05-glm-5.3-flash-case02.md)。
 - **R04（2026-09-02）**：GLM-5.3-Flash（dsh-science × GLM-5.3-Flash）单系统 × 3 篇复现报告的 GPT-5.6-sol 审稿式评测——**Tyson 2004 = 43.25⚠️ / Love 2014 (DESeq2) = 52.0⚠️ / Zeisel 2015 = 51.5⚠️**，均 Major Revision。因缺 Auton/1000G（case 02）**不入综合排名**；judge 对"参照 bins 支撑结论"判定为输入违规（Tyson 由此从同侪的 93 骤降至 43），与 R03 dsh-science×GLM-5.3（也用 NCBI 参照 bins，得 93）不一致，需人工复核；Love 两次采样 55.8/52.0 显示评审方差，建议第二评审。评审记录见 [evaluations/round-04-glm-5.3-flash.md](../evaluations/round-04-glm-5.3-flash.md)，三份评审全文见 `evaluations/gpt5.6-review-glm5.3flash-*.md`。（**R05 后续**：case 02 已补测并入综合榜，见 R05 条目。）
