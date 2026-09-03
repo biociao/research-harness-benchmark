@@ -124,6 +124,18 @@ G  dsh-science × GLM-5.3-Flash
 | **B** | Claude Science | DeepSeek-V1-Flash | 80 | 87 | 81 | 82 | 80 | **82** |
 | **E** | workbuddy（auto） | GLM-5.2 | 75 | 82 | 75 | 78 | 76 | **77⚠️** |
 
+
+**01｜Tyson 2004 — GPT-5.6-sol 口径（独立复现报告，见上方「单论文排名」）**
+
+| 复现报告 | 评审 | 加权分 /100 | 文献 | 理解 | 复现 | 实验 | 效率 | 备注 |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| ChatGPT-Rosalind-5.6Sol · `tyson2004_reproduction.html` | GPT-5.6-sol | **67.5** | 7 | 8 | 6 | 6 | 6 | 部分复现成功；把握证据边界、深至 2004 contig 批次，SNP/重组/FISH/ORF/代谢仅原文复核 |
+| phylo-biomni-standard · `tyson2004_reproduction.html` | GPT-5.6-sol | **52.5** | 8 | 5 | 5 | 3 | 7 | 唯一从原始 Sanger reads 起算的端到端尝试，但 7 图全 broken 致 D4=3，单一 nifH 命中过度升为机制结论 |
+| dcsCloud · `Tyson2004_Reproduction.html` | GPT-5.6-sol | **41.5** | 5 | 3 | 4 | 5 | 5 | 非端到端（成品基因组再分析）；碳固定未检出与论文不符、nif 归因偷换 |
+| dsh-science · GLM-5.3-Flash（R04） | GPT-5.6-sol | **43.25** | — | — | — | — | — | 参照 bins 违规、claim 判据替换；见综合榜第 7 行（双项目口径） |
+
+> ⚠️ **口径分离**：上方 R03 六组合出自外部评审、为双项目答卷；此处为 GPT-5.6-sol 对单论文独立复现报告的评分，两者**非同口径、非同类对象**，只并列不混排。
+
 **02｜Auton 2015（1000 Genomes Phase 3）**
 
 | 组合 | Harness | LLM | 文献 | 理解 | 复现 | 实验 | 效率 | 项目分 |
