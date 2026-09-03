@@ -35,6 +35,21 @@
 
 ## 评测轮次
 
+### Round 08 & Round 07（非排名）— 独立 Tyson 2004 复现报告 GPT-5.6-sol 五维评测存档
+
+> **不入综合排行榜**：这三份被评对象**都是 01 Tyson 2004 复现报告**，但均**不是「01 Tyson + 02 Auton」双项目完整答卷**，故与 R06 一致、仅作逐份五维评测存档。评审均为 **GPT-5.6-sol**（codex CLI，与 R04/R05/R06 同口径），分值可与 R07 互比；三者研究深度不对等（①为端到端复现尝试、②③为成品/半成品基因组再分析），解读需结合差异。记录见 [evaluations/round-08-biomni-dcscloud.md](evaluations/round-08-biomni-dcscloud.md) 与 [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](evaluations/round-07-gpt5.6-sol-rosalind-e01review.md)。
+
+| 文档 | 加权总分 /100 | D1 | D2 | D3 | D4 | D5 | 审稿结论 | 关键判定 |
+|---|---:|---:|---:|---:|---:|---:|---|---|
+| ChatGPT-Rosalind-5.6Sol · `tyson2004_reproduction.html` | **67.5** | 7 | 8 | 6 | 6 | 6 | Major Revision | 部分复现成功；D2=8 逻辑最严密，但 SNP/重组/FISH/ORF/代谢仅原文复核、工程证据不足 |
+| phylo-biomni-standard · `tyson2004_reproduction.html` | **52.5** | 8 | 5 | 5 | 3 | 7 | Major Revision | **真实端到端复现尝试**（原始 Sanger reads 起算，D1/D5 最高），但 **7 图全 broken**、单一 nifH 命中过度升为机制结论 |
+| dcsCloud · `Tyson2004_Reproduction.html` | **41.5** | 5 | 3 | 4 | 5 | 5 | Major Revision | **非端到端复现**（成品基因组再分析）；碳固定"未检出"与论文不符、nif 归因偷换、e-value 误当复现显著 |
+
+> **横向解读**（三者同属 01 Tyson 2004 复现报告，GPT-5.6-sol 口径）：
+> - **Rosalind（67.5）**：三者中分最高，把握"能复现 / 不能独立复现 / 原文复核"证据边界（D2=8），并深至 2004 contig 批次与"共识序列不可用于重估 SNP 率"的方法学判断。
+> - **Biomni（52.5）**：**唯一真正从原始 reads 起算的端到端尝试**（D1/D5=8/7 最高），但因 7 张图全部 broken 被砍到 D4=3，且把单一 `nifH` 命中写成"可能改写固氮分工"，证据链未闭合。
+> - **dcsCloud（41.5）**：基于论文已发布重构基因组（LSP/Ferroplasma）再注释，**未从 reads 起算**；"碳固定未检出"与论文不符、nif 归因偷换、图 5.1 同轴/5.3 论文数据重绘当复现、e-value 被误当"统计显著"。
+
 ### Round 03（最新）— 六系统双项目复评（A–F × 2 论文）
 
 > **评分口径**：与 R02 相同的五维加权（0–100 制）。本轮为外部评审对 **12 份复现报告**（6 组合 × 2 论文）的逐份审稿式复评；评审原文按 0–10 制打分，入库时 ×10 换算，综合总分取评审综合分（D/E 因 D02/E02 勘误互换按两项目平均重算，按固定公式复算值见评测记录）。
@@ -132,6 +147,8 @@ G  dsh-science × GLM-5.3-Flash
 
 | 内容 | 入口 |
 |---|---|
+| R08 评测记录（Biomni 52.5 / dcsCloud 41.5，GPT-5.6-sol，非排名） | [evaluations/round-08-biomni-dcscloud.md](evaluations/round-08-biomni-dcscloud.md) |
+| R07 评测记录（Rosalind 67.5 / E01 评审稿 53.5，GPT-5.6-sol，非排名） | [evaluations/round-07-gpt5.6-sol-rosalind-e01review.md](evaluations/round-07-gpt5.6-sol-rosalind-e01review.md) |
 | R03 评审全文（12 份报告逐一评分、横向发现与推荐梯队） | [evaluations/round-03-A-F.md](evaluations/round-03-A-F.md) |
 | Round 03 评测记录（结构化、含组合身份核对与跨轮次核对） | [evaluations/round-03-six-system-combined.md](evaluations/round-03-six-system-combined.md) |
 | Round 05 评测记录（GLM-5.3-Flash case 02 补测 + 评审 + 并入综合榜） | [evaluations/round-05-glm-5.3-flash-case02.md](evaluations/round-05-glm-5.3-flash-case02.md) |
